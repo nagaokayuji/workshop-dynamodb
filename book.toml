@@ -3,7 +3,7 @@ authors = ["Yuji Nagaoka"]
 language = "ja"
 multilingual = false
 src = "src"
-title = "workshop"
+title = "DynamoDB ハンズオン"
 description = "workshop materials"
 
 [preprocessor.katex]
