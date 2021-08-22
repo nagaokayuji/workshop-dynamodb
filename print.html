@@ -624,6 +624,7 @@ dynamodb.scan(params, function(err, data) {
 </li>
 </ul>
 <h2 id="scanのオプション"><a class="header" href="#scanのオプション">Scanのオプション</a></h2>
+<p>いくつか紹介します。</p>
 <ul>
 <li>FilterExpression
 <ul>
@@ -672,8 +673,9 @@ dynamodb.scan(params, function(err, data) {
 <h1 id="テーブルのデータを取得query"><a class="header" href="#テーブルのデータを取得query">テーブルのデータを取得(Query)</a></h1>
 <p><a href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_Query.html">Query - Amazon DynamoDB</a></p>
 <p><code>Query</code> ではパーティションキーを指定し、パーティションキーが一致したすべての項目を取得します。</p>
-<p><code>KeyConditionExpression</code> を指定するとソートキーの条件で絞ることもできます。</p>
-<p>試しに <code>ID</code> が <code>5</code> のデータを取得してみます。</p>
+<p><code>KeyConditionExpression</code> を指定してパーティションキーを指定する必要があります。</p>
+<p>※ 同様にソートキーの条件も指定することができます。</p>
+<p>ここでは、 <code>ID</code> が <code>5</code> のデータを取得してみます。</p>
 <pre><code class="language-jsx">var params = {
     TableName: 'athlete',
     KeyConditionExpression: 'ID = :val', // :val のようなプレースホルダが必要
@@ -804,6 +806,7 @@ docClient.query(params, function(err, data) {
   &quot;ScannedCount&quot;: 6
 }
 </code></pre>
+<p>結果の項目は Scan と同様になっています。</p>
 <h2 id="注意"><a class="header" href="#注意">注意</a></h2>
 <p><code>athlete</code> テーブルでは <code>ID</code> がパーティションキーであることに注意してください。</p>
 <p>例えば、以下のようにパーティションキーを指定しないクエリはエラーとなります。</p>
@@ -820,6 +823,65 @@ docClient.query(params, function(err, data) {
     else ppJson(data); // successful response
 });
 </code></pre>
+<h2 id="query-のオプション"><a class="header" href="#query-のオプション">Query のオプション</a></h2>
+<p>いくつか紹介します。</p>
+<ul>
+<li>KeyConditionExpression
+<ul>
+<li>Query 特有のオプションです。</li>
+<li>パーティションキーやソートキーの条件を指定します。</li>
+<li>パーティションキー
+<ul>
+<li><code>partitionKeyName = :partitionkeyval</code> の形式にする必要があります。</li>
+</ul>
+</li>
+<li>ソートキー
+<ul>
+<li><code>=</code> 以外の演算子も使用できます。
+<ul>
+<li><code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>, <code>BETWEEN</code>, <code>begins_with</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>ExpressionAttributeNames
+<ul>
+<li>expressionで使用される属性名に名前を設定します。</li>
+<li>名前には<code>#</code>で始まる文字を指定します。</li>
+<li>ユースケースには以下があります。
+<ul>
+<li>DynamoDB の予約語と競合する場合</li>
+<li>繰り返し使用される値にプレースホルダを設定したい場合</li>
+<li>属性名の特殊文字のエスケープ</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>ExpressionAttributeValues
+<ul>
+<li>expression で使用される値に名前を設定します。</li>
+<li>名前には<code>:</code>で始まる文字を指定します。</li>
+</ul>
+</li>
+<li>ScanIndexForward
+<ul>
+<li>ソートキーの順序を指定できます。</li>
+<li>true
+<ul>
+<li>昇順になります。</li>
+<li>指定しない場合はtrueとして扱われます。</li>
+</ul>
+</li>
+<li>false
+<ul>
+<li>降順になります。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
 <h1 id="gsiを追加する"><a class="header" href="#gsiを追加する">GSIを追加する</a></h1>
 <p>UpdateTableオペレーションにより、</p>
