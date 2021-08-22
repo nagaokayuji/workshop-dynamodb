@@ -101,6 +101,8 @@ dynamodb.scan(params, function(err, data) {
   - すべての要素がScanされた場合は空になります。
 
 ## Scanのオプション
+いくつかご紹介します。
+
 - FilterExpression
   - 結果を絞り込むことができます。
   - 表示される結果を絞り込むため、指定しても消費する RCU は変わりません。
