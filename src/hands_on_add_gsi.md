@@ -1,8 +1,10 @@
 # GSIを追加する
 
-UpdateTableオペレーションにより、
+GSI を追加するには
+`UpdateTable` オペレーションで `GlobalSecondaryIndexUpdates`を指定します。
 
-`Year` をパーティションキーとしたGSIを追加します。
+
+ここでは `Year` をパーティションキーとしたGSIを追加してみます。
 
 ```jsx
 var params = {
@@ -45,6 +47,55 @@ dynamodb.updateTable(params, function (err, data) {
 });
 ```
 
+## 実行結果
 `byYear` という名前でGSIを作成しました。
 
-（DescribeTable で確認してみましょう。）
+実行すると以下のようなレスポンスが得られます。
+
+なお、下記のレスポンスは DescribeTable を実行すると同様の結果となります。
+
+```json
+{
+  "TableDescription": {
+    "AttributeDefinitions": [
+      { "AttributeName": "Year", "AttributeType": "N" },
+      { "AttributeName": "index", "AttributeType": "N" },
+      { "AttributeName": "ID", "AttributeType": "N" }
+    ],
+    "TableName": "athlete",
+    "KeySchema": [
+      { "AttributeName": "ID", "KeyType": "HASH" },
+      { "AttributeName": "index", "KeyType": "RANGE" }
+    ],
+    "TableStatus": "ACTIVE",
+    "CreationDateTime": "2021-08-09T04:33:11.161Z",
+    "ProvisionedThroughput": {
+      "LastIncreaseDateTime": "1970-01-01T00:00:00.000Z",
+      "LastDecreaseDateTime": "1970-01-01T00:00:00.000Z",
+      "NumberOfDecreasesToday": 0,
+      "ReadCapacityUnits": 1,
+      "WriteCapacityUnits": 1
+    },
+    "TableSizeBytes": 182074,
+    "ItemCount": 999,
+    "TableArn": "arn:aws:dynamodb:ddblocal:000000000000:table/athlete",
+    "GlobalSecondaryIndexes": [
+      {
+        "IndexName": "byYear",
+        "KeySchema": [
+          { "AttributeName": "Year", "KeyType": "HASH" },
+          { "AttributeName": "ID", "KeyType": "RANGE" }
+        ],
+        "Projection": { "ProjectionType": "ALL" },
+        "IndexStatus": "CREATING",
+        "Backfilling": false,
+        "ProvisionedThroughput": {
+          "ReadCapacityUnits": 1,
+          "WriteCapacityUnits": 1
+        },
+        "IndexArn": "arn:aws:dynamodb:ddblocal:000000000000:table/athlete/index/byYear"
+      }
+    ]
+  }
+}
+```
