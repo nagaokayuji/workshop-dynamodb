@@ -411,6 +411,7 @@ dynamodb.listTables(params, function(err, data) {
     else ppJson(data); // successful response
 });
 </code></pre>
+<h2 id="実行結果"><a class="header" href="#実行結果">実行結果</a></h2>
 <p>実行してみると、</p>
 <p>次のようなレスポンスが返ってきます。</p>
 <pre><code class="language-jsx">{&quot;TableNames&quot;:[&quot;athlete&quot;]}
@@ -531,6 +532,7 @@ dynamodb.scan(params, function(err, data) {
     else ppJson(data); // successful response
 });
 </code></pre>
+<h2 id="実行結果-1"><a class="header" href="#実行結果-1">実行結果</a></h2>
 <p>これを実行すると
 以下のような結果が得られると思います。</p>
 <pre><code class="language-json">{
@@ -668,7 +670,10 @@ dynamodb.scan(params, function(err, data) {
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
 <h1 id="テーブルのデータを取得query"><a class="header" href="#テーブルのデータを取得query">テーブルのデータを取得(Query)</a></h1>
-<p><code>ID</code> が <code>5</code> のデータを取得します。</p>
+<p><a href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_Query.html">Query - Amazon DynamoDB</a></p>
+<p><code>Query</code> ではパーティションキーを指定し、パーティションキーが一致したすべての項目を取得します。</p>
+<p><code>KeyConditionExpression</code> を指定するとソートキーの条件で絞ることもできます。</p>
+<p>試しに <code>ID</code> が <code>5</code> のデータを取得してみます。</p>
 <pre><code class="language-jsx">var params = {
     TableName: 'athlete',
     KeyConditionExpression: 'ID = :val', // :val のようなプレースホルダが必要
@@ -682,7 +687,125 @@ docClient.query(params, function(err, data) {
     else ppJson(data); // successful response
 });
 </code></pre>
-<p>この <code>ID</code> がパーティションキーであることに注意してください。</p>
+<h2 id="実行結果-2"><a class="header" href="#実行結果-2">実行結果</a></h2>
+<p>結果は以下のようになります。</p>
+<pre><code class="language-json">{
+  &quot;Items&quot;: [
+    {
+      &quot;NOC&quot;: &quot;NED&quot;,
+      &quot;Sex&quot;: &quot;F&quot;,
+      &quot;index&quot;: 4,
+      &quot;City&quot;: &quot;Calgary&quot;,
+      &quot;Weight&quot;: 82,
+      &quot;Name&quot;: &quot;Christine Jacoba Aaftink&quot;,
+      &quot;Sport&quot;: &quot;Speed Skating&quot;,
+      &quot;Year&quot;: 1988,
+      &quot;Games&quot;: &quot;1988 Winter&quot;,
+      &quot;Event&quot;: &quot;Speed Skating Women's 500 metres&quot;,
+      &quot;Height&quot;: 185,
+      &quot;Team&quot;: &quot;Netherlands&quot;,
+      &quot;ID&quot;: 5,
+      &quot;Medal&quot;: null,
+      &quot;Season&quot;: &quot;Winter&quot;,
+      &quot;Age&quot;: 21
+    },
+    {
+      &quot;NOC&quot;: &quot;NED&quot;,
+      &quot;Sex&quot;: &quot;F&quot;,
+      &quot;index&quot;: 5,
+      &quot;City&quot;: &quot;Calgary&quot;,
+      &quot;Weight&quot;: 82,
+      &quot;Name&quot;: &quot;Christine Jacoba Aaftink&quot;,
+      &quot;Sport&quot;: &quot;Speed Skating&quot;,
+      &quot;Year&quot;: 1988,
+      &quot;Games&quot;: &quot;1988 Winter&quot;,
+      &quot;Event&quot;: &quot;Speed Skating Women's 1,000 metres&quot;,
+      &quot;Height&quot;: 185,
+      &quot;Team&quot;: &quot;Netherlands&quot;,
+      &quot;ID&quot;: 5,
+      &quot;Medal&quot;: null,
+      &quot;Season&quot;: &quot;Winter&quot;,
+      &quot;Age&quot;: 21
+    },
+    {
+      &quot;NOC&quot;: &quot;NED&quot;,
+      &quot;Sex&quot;: &quot;F&quot;,
+      &quot;index&quot;: 6,
+      &quot;City&quot;: &quot;Albertville&quot;,
+      &quot;Weight&quot;: 82,
+      &quot;Name&quot;: &quot;Christine Jacoba Aaftink&quot;,
+      &quot;Sport&quot;: &quot;Speed Skating&quot;,
+      &quot;Year&quot;: 1992,
+      &quot;Games&quot;: &quot;1992 Winter&quot;,
+      &quot;Event&quot;: &quot;Speed Skating Women's 500 metres&quot;,
+      &quot;Height&quot;: 185,
+      &quot;Team&quot;: &quot;Netherlands&quot;,
+      &quot;ID&quot;: 5,
+      &quot;Medal&quot;: null,
+      &quot;Season&quot;: &quot;Winter&quot;,
+      &quot;Age&quot;: 25
+    },
+    {
+      &quot;NOC&quot;: &quot;NED&quot;,
+      &quot;Sex&quot;: &quot;F&quot;,
+      &quot;index&quot;: 7,
+      &quot;City&quot;: &quot;Albertville&quot;,
+      &quot;Weight&quot;: 82,
+      &quot;Name&quot;: &quot;Christine Jacoba Aaftink&quot;,
+      &quot;Sport&quot;: &quot;Speed Skating&quot;,
+      &quot;Year&quot;: 1992,
+      &quot;Games&quot;: &quot;1992 Winter&quot;,
+      &quot;Event&quot;: &quot;Speed Skating Women's 1,000 metres&quot;,
+      &quot;Height&quot;: 185,
+      &quot;Team&quot;: &quot;Netherlands&quot;,
+      &quot;ID&quot;: 5,
+      &quot;Medal&quot;: null,
+      &quot;Season&quot;: &quot;Winter&quot;,
+      &quot;Age&quot;: 25
+    },
+    {
+      &quot;NOC&quot;: &quot;NED&quot;,
+      &quot;Sex&quot;: &quot;F&quot;,
+      &quot;index&quot;: 8,
+      &quot;City&quot;: &quot;Lillehammer&quot;,
+      &quot;Weight&quot;: 82,
+      &quot;Name&quot;: &quot;Christine Jacoba Aaftink&quot;,
+      &quot;Sport&quot;: &quot;Speed Skating&quot;,
+      &quot;Year&quot;: 1994,
+      &quot;Games&quot;: &quot;1994 Winter&quot;,
+      &quot;Event&quot;: &quot;Speed Skating Women's 500 metres&quot;,
+      &quot;Height&quot;: 185,
+      &quot;Team&quot;: &quot;Netherlands&quot;,
+      &quot;ID&quot;: 5,
+      &quot;Medal&quot;: null,
+      &quot;Season&quot;: &quot;Winter&quot;,
+      &quot;Age&quot;: 27
+    },
+    {
+      &quot;NOC&quot;: &quot;NED&quot;,
+      &quot;Sex&quot;: &quot;F&quot;,
+      &quot;index&quot;: 9,
+      &quot;City&quot;: &quot;Lillehammer&quot;,
+      &quot;Weight&quot;: 82,
+      &quot;Name&quot;: &quot;Christine Jacoba Aaftink&quot;,
+      &quot;Sport&quot;: &quot;Speed Skating&quot;,
+      &quot;Year&quot;: 1994,
+      &quot;Games&quot;: &quot;1994 Winter&quot;,
+      &quot;Event&quot;: &quot;Speed Skating Women's 1,000 metres&quot;,
+      &quot;Height&quot;: 185,
+      &quot;Team&quot;: &quot;Netherlands&quot;,
+      &quot;ID&quot;: 5,
+      &quot;Medal&quot;: null,
+      &quot;Season&quot;: &quot;Winter&quot;,
+      &quot;Age&quot;: 27
+    }
+  ],
+  &quot;Count&quot;: 6,
+  &quot;ScannedCount&quot;: 6
+}
+</code></pre>
+<h2 id="注意"><a class="header" href="#注意">注意</a></h2>
+<p><code>athlete</code> テーブルでは <code>ID</code> がパーティションキーであることに注意してください。</p>
 <p>例えば、以下のようにパーティションキーを指定しないクエリはエラーとなります。</p>
 <pre><code class="language-jsx">var params = {
     TableName: 'athlete',
