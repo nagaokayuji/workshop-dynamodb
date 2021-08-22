@@ -145,6 +145,8 @@
                     <main>
                         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
 <h1 id="テーブル一覧を取得listtables"><a class="header" href="#テーブル一覧を取得listtables">テーブル一覧を取得(ListTables)</a></h1>
+<p>ListTables を実行してみます。</p>
+<p>特にパラメータは必要ありません。</p>
 <pre><code class="language-jsx">var params = {
 // 今回は指定なし
 };
@@ -153,9 +155,30 @@ dynamodb.listTables(params, function(err, data) {
     else ppJson(data); // successful response
 });
 </code></pre>
-<p><code>athlete</code> というテーブルが存在すると思います。</p>
-<p>以下のサイトからダウンロードしたものから1000行を抽出したものです。</p>
+<p>実行してみると、</p>
+<p>次のようなレスポンスが返ってきます。</p>
+<pre><code class="language-jsx">{&quot;TableNames&quot;:[&quot;athlete&quot;]}
+</code></pre>
+<p><code>athlete</code> というテーブルが存在することがわかりました。</p>
+<p>このテーブルには以下のサイトからダウンロードしたCSV(<code>athlete_events.csv</code>)から1000行を抽出したデータが格納されています。</p>
 <p><a href="https://www.kaggle.com/mysarahmadbhat/120-years-of-olympic-history">120 Years of Olympic History</a></p>
+<pre><code>About this file
+ID Unique number for each athlete
+Name Athlete's name
+Sex Male (M) or Female (F)
+Age Integer
+Height In centimeters
+Weight In kilograms
+Team Team name
+NOC National Olympic Committee 3-letter code
+Games Year and season
+Year Integer
+Season summer or Winter
+City Host city
+Sport Sport
+Event Event
+Medal Gold, Silver, Bronze, or NA
+</code></pre>
 
                     </main>
 

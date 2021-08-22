@@ -401,6 +401,8 @@ RDBにおけるテーブルやカラムなどはDynamoDBでも共通の概念で
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
 <h1 id="テーブル一覧を取得listtables"><a class="header" href="#テーブル一覧を取得listtables">テーブル一覧を取得(ListTables)</a></h1>
+<p>ListTables を実行してみます。</p>
+<p>特にパラメータは必要ありません。</p>
 <pre><code class="language-jsx">var params = {
 // 今回は指定なし
 };
@@ -409,12 +411,35 @@ dynamodb.listTables(params, function(err, data) {
     else ppJson(data); // successful response
 });
 </code></pre>
-<p><code>athlete</code> というテーブルが存在すると思います。</p>
-<p>以下のサイトからダウンロードしたものから1000行を抽出したものです。</p>
+<p>実行してみると、</p>
+<p>次のようなレスポンスが返ってきます。</p>
+<pre><code class="language-jsx">{&quot;TableNames&quot;:[&quot;athlete&quot;]}
+</code></pre>
+<p><code>athlete</code> というテーブルが存在することがわかりました。</p>
+<p>このテーブルには以下のサイトからダウンロードしたCSV(<code>athlete_events.csv</code>)から1000行を抽出したデータが格納されています。</p>
 <p><a href="https://www.kaggle.com/mysarahmadbhat/120-years-of-olympic-history">120 Years of Olympic History</a></p>
+<pre><code>About this file
+ID Unique number for each athlete
+Name Athlete's name
+Sex Male (M) or Female (F)
+Age Integer
+Height In centimeters
+Weight In kilograms
+Team Team name
+NOC National Olympic Committee 3-letter code
+Games Year and season
+Year Integer
+Season summer or Winter
+City Host city
+Sport Sport
+Event Event
+Medal Gold, Silver, Bronze, or NA
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
 <h1 id="テーブルの詳細を取得describetable"><a class="header" href="#テーブルの詳細を取得describetable">テーブルの詳細を取得(DescribeTable)</a></h1>
-<p>このテーブルの詳細を見てみます。</p>
+<p><a href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_DescribeTable.html">DescribeTable - Amazon DynamoDB</a></p>
+<p><code>DescribeTable</code> を実行して<code>athlete</code>テーブルの詳細を取得してみましょう。</p>
+<p>以下のようにテーブル名(<code>TableName</code>)を指定してDescribeTableを実行します。</p>
 <pre><code class="language-jsx">var params = {
     TableName: 'athlete',
 };
@@ -423,9 +448,74 @@ dynamodb.describeTable(params, function(err, data) {
     else ppJson(data); // successful response
 });
 </code></pre>
-<p><img src="https://res.cloudinary.com/ddaz9etkx/image/upload/v1628485639/ot/describe-table_fudpz9.png" alt="https://res.cloudinary.com/ddaz9etkx/image/upload/v1628485639/ot/describe-table_fudpz9.png" /></p>
+<p>実行すると以下のようなレスポンスが返ってきます。</p>
+<pre><code class="language-JSON">{
+  &quot;Table&quot;: {
+    &quot;AttributeDefinitions&quot;: [
+      { &quot;AttributeName&quot;: &quot;ID&quot;, &quot;AttributeType&quot;: &quot;N&quot; },
+      { &quot;AttributeName&quot;: &quot;index&quot;, &quot;AttributeType&quot;: &quot;N&quot; }
+    ],
+    &quot;TableName&quot;: &quot;athlete&quot;,
+    &quot;KeySchema&quot;: [
+      { &quot;AttributeName&quot;: &quot;ID&quot;, &quot;KeyType&quot;: &quot;HASH&quot; },
+      { &quot;AttributeName&quot;: &quot;index&quot;, &quot;KeyType&quot;: &quot;RANGE&quot; }
+    ],
+    &quot;TableStatus&quot;: &quot;ACTIVE&quot;,
+    &quot;CreationDateTime&quot;: &quot;2021-08-09T04:33:11.161Z&quot;,
+    &quot;ProvisionedThroughput&quot;: {
+      &quot;LastIncreaseDateTime&quot;: &quot;1970-01-01T00:00:00.000Z&quot;,
+      &quot;LastDecreaseDateTime&quot;: &quot;1970-01-01T00:00:00.000Z&quot;,
+      &quot;NumberOfDecreasesToday&quot;: 0,
+      &quot;ReadCapacityUnits&quot;: 1,
+      &quot;WriteCapacityUnits&quot;: 1
+    },
+    &quot;TableSizeBytes&quot;: 182074,
+    &quot;ItemCount&quot;: 999,
+    &quot;TableArn&quot;: &quot;arn:aws:dynamodb:ddblocal:000000000000:table/athlete&quot;
+  }
+}
+</code></pre>
+<h2 id="レスポンスの中身について"><a class="header" href="#レスポンスの中身について">レスポンスの中身について</a></h2>
+<p>TableDescription の定義が返ってきます。</p>
+<p>詳しくは以下に記載があります。</p>
+<p><a href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_TableDescription.html">TableDescription - Amazon DynamoDB</a></p>
+<h3 id="attributedefinitions"><a class="header" href="#attributedefinitions">AttributeDefinitions</a></h3>
+<ul>
+<li>AttributeName
+<ul>
+<li>属性名です。</li>
+</ul>
+</li>
+<li>AttributeType
+<ul>
+<li>属性のデータ型の定義です。
+<ul>
+<li>N = Number</li>
+<li>S = String</li>
+<li>B = Binary</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <p>※ DynamoDB の型について</p>
 <p><a href="https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/developerguide/DynamoDBMapper.DataTypes.html">サポートされているデータの種類</a></p>
+<h3 id="keyschema"><a class="header" href="#keyschema">KeySchema</a></h3>
+<p>パーティションキー・ソートキー情報です。</p>
+<ul>
+<li>AttributeName
+<ul>
+<li>属性名です。</li>
+</ul>
+</li>
+<li>KeyType
+<ul>
+<li>その名の通りキーのタイプです。</li>
+<li><code>HASH</code>　= パーティションキー</li>
+<li><code>RANGE</code> = ソートキー</li>
+</ul>
+</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
 <h1 id="テーブルのデータを取得scan"><a class="header" href="#テーブルのデータを取得scan">テーブルのデータを取得(Scan)</a></h1>
 <p>Scanでは簡単にテーブルの内容を取得することができます。</p>
