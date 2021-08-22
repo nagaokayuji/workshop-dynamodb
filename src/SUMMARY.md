@@ -14,4 +14,5 @@
     - [GSIを追加](hands_on_add_gsi.md)
     - [GSIを使用してQueryを実行](hands_on_gsi_query.md)
     - [Scan, Filter の注意点](hands_on_scan_filter_caution.md)
+  - []
   - [参考](./references.md)
