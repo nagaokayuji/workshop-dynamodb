@@ -1,5 +1,10 @@
 # オペレーション
 
+DynamoDB で使用できる API について紹介します。
+
+詳しくは以下のドキュメントをご覧ください。
+
+[Actions - Amazon DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_Operations.html)
 
 ## テーブル関連
 
@@ -19,6 +24,8 @@
 - GetItem
     - テーブルから単一の項目を取得
     - **プライマリキーを指定**する
+- BatchGetItem
+    - GetItem を複数回実行
 - Query
     - **パーティションキーを指定**して項目を取得
     - 複数取得できる
@@ -45,3 +52,7 @@
 - DeleteItem
     - 単一の項目を削除
     - **プライマリキーを指定**する
+
+## その他
+- BatchWriteItem
+  - データ追加や削除を複数回できる
