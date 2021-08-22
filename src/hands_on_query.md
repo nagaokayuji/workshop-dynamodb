@@ -4,11 +4,11 @@
 
 `Query` ではパーティションキーを指定し、パーティションキーが一致したすべての項目を取得します。
 
-`KeyConditionExpression` を指定するとソートキーの条件で絞ることもできます。
+`KeyConditionExpression` を指定してパーティションキーを指定する必要があります。
 
+※ 同様にソートキーの条件も指定することができます。
 
-
-試しに `ID` が `5` のデータを取得してみます。
+ここでは、 `ID` が `5` のデータを取得してみます。
 
 ```jsx
 var params = {
@@ -145,6 +145,8 @@ docClient.query(params, function(err, data) {
 }
 ```
 
+結果の項目は Scan と同様になっています。
+
 
 ## 注意
 `athlete` テーブルでは `ID` がパーティションキーであることに注意してください。
@@ -165,3 +167,31 @@ docClient.query(params, function(err, data) {
     else ppJson(data); // successful response
 });
 ```
+
+## Query のオプション
+いくつかご紹介します。
+
+- KeyConditionExpression
+  - Query 特有のオプションです。
+  - パーティションキーやソートキーの条件を指定します。
+  - パーティションキー
+    - `partitionKeyName = :partitionkeyval` の形式にする必要があります。
+  - ソートキー
+    - `=` 以外の演算子も使用できます。
+      - `<`, `>`, `<=`, `>=`, `BETWEEN`, `begins_with`
+- ExpressionAttributeNames
+  - 置換に使用する名前(Attribute)を指定します。
+  - 
+- ExpressionAttributeValues
+  - 指定したexpressionのプレースホルダに値を設定します。
+  - `:`を使用して
+  - 
+- ScanIndexForward
+  - ソートキーの順序を指定できます。
+  - true
+    - 昇順になります。
+    - 指定しない場合はtrueとして扱われます。
+  - false
+    - 降順になります。
+
+
