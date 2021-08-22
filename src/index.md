@@ -2,7 +2,7 @@
 
 ## DynamoDBとは？
 
-AWSマネージドのNoSQLデータベース。
+AWSマネージドのNoSQLデータベースです。
 
 ### NoSQL (Not Only SQL)
 
@@ -10,7 +10,7 @@ RDBMS以外のDBMSを指します。
 
 扱うデータによっては非常に高速になります。
 
-NoSQLは色々分類できます。
+NoSQLの中にもいろいろな種類があります。
 
 - Key-Value store
     - Keyに対してValueを格納する構造
