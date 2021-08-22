@@ -1,5 +1,7 @@
 - [AWS DynamoDB ハンズオン](./index.md)
   - [抑えておくべき概念](prerequisite_knowledges.md)
+    - [テーブル・項目・属性](prerequisite_tables.md)
+    - [キー](prerequisite_keys.md)
     - [インデックス](prerequisite_index.md)
     - [キャパシティユニット](prerequisite_capacity_unit.md)
   - [テーブル設計における注意点](design.md)
