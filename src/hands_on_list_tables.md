@@ -14,6 +14,7 @@ dynamodb.listTables(params, function(err, data) {
 });
 ```
 
+## 実行結果
 実行してみると、
 
 次のようなレスポンスが返ってきます。

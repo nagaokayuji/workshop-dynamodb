@@ -18,6 +18,8 @@ dynamodb.scan(params, function(err, data) {
 });
 ```
 
+## 実行結果
+
 これを実行すると
 以下のような結果が得られると思います。
 
