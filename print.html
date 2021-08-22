@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">AWS DynamoDB ハンズオン</a></li><li class="chapter-item expanded "><a href="prerequisite_knowledges.html"><strong aria-hidden="true">1.</strong> 抑えておくべき概念</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="prerequisite_tables.html"><strong aria-hidden="true">1.1.</strong> テーブル・項目・属性</a></li><li class="chapter-item expanded "><a href="prerequisite_keys.html"><strong aria-hidden="true">1.2.</strong> キー</a></li><li class="chapter-item expanded "><a href="prerequisite_index.html"><strong aria-hidden="true">1.3.</strong> インデックス</a></li><li class="chapter-item expanded "><a href="prerequisite_capacity_unit.html"><strong aria-hidden="true">1.4.</strong> キャパシティユニット</a></li></ol></li><li class="chapter-item expanded "><a href="design.html"><strong aria-hidden="true">2.</strong> テーブル設計における注意点</a></li><li class="chapter-item expanded "><a href="operations.html"><strong aria-hidden="true">3.</strong> オペレーションの種類</a></li><li class="chapter-item expanded "><a href="hands_on.html"><strong aria-hidden="true">4.</strong> ハンズオン</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="hands_on_list_tables.html"><strong aria-hidden="true">4.1.</strong> テーブル一覧を取得</a></li><li class="chapter-item expanded "><a href="hands_on_describe_tables.html"><strong aria-hidden="true">4.2.</strong> テーブル詳細を取得</a></li><li class="chapter-item expanded "><a href="hands_on_scan.html"><strong aria-hidden="true">4.3.</strong> Scanを実行</a></li><li class="chapter-item expanded "><a href="hands_on_query.html"><strong aria-hidden="true">4.4.</strong> Queryを実行</a></li><li class="chapter-item expanded "><a href="hands_on_add_gsi.html"><strong aria-hidden="true">4.5.</strong> GSIを追加</a></li><li class="chapter-item expanded "><a href="hands_on_gsi_query.html"><strong aria-hidden="true">4.6.</strong> GSIを使用してQueryを実行</a></li><li class="chapter-item expanded "><a href="hands_on_scan_filter_caution.html"><strong aria-hidden="true">4.7.</strong> Scan, Filter の注意点</a></li></ol></li><li class="chapter-item expanded "><a href="references.html"><strong aria-hidden="true">5.</strong> 参考</a></li></ol>            </div>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">AWS DynamoDB ハンズオン</a></li><li class="chapter-item expanded "><a href="prerequisite_knowledges.html"><strong aria-hidden="true">1.</strong> 抑えておくべき概念</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="prerequisite_tables.html"><strong aria-hidden="true">1.1.</strong> テーブル・項目・属性</a></li><li class="chapter-item expanded "><a href="prerequisite_keys.html"><strong aria-hidden="true">1.2.</strong> キー</a></li><li class="chapter-item expanded "><a href="prerequisite_index.html"><strong aria-hidden="true">1.3.</strong> インデックス</a></li><li class="chapter-item expanded "><a href="prerequisite_capacity_unit.html"><strong aria-hidden="true">1.4.</strong> キャパシティユニット</a></li></ol></li><li class="chapter-item expanded "><a href="design.html"><strong aria-hidden="true">2.</strong> テーブル設計における注意点</a></li><li class="chapter-item expanded "><a href="operations.html"><strong aria-hidden="true">3.</strong> オペレーションの種類</a></li><li class="chapter-item expanded "><a href="hands_on.html"><strong aria-hidden="true">4.</strong> ハンズオン</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="hands_on_list_tables.html"><strong aria-hidden="true">4.1.</strong> テーブル一覧を取得</a></li><li class="chapter-item expanded "><a href="hands_on_describe_tables.html"><strong aria-hidden="true">4.2.</strong> テーブル詳細を取得</a></li><li class="chapter-item expanded "><a href="hands_on_scan.html"><strong aria-hidden="true">4.3.</strong> Scanを実行</a></li><li class="chapter-item expanded "><a href="hands_on_query.html"><strong aria-hidden="true">4.4.</strong> Queryを実行</a></li><li class="chapter-item expanded "><a href="hands_on_add_gsi.html"><strong aria-hidden="true">4.5.</strong> GSIを追加</a></li><li class="chapter-item expanded "><a href="hands_on_gsi_query.html"><strong aria-hidden="true">4.6.</strong> GSIを使用してQueryを実行</a></li><li class="chapter-item expanded "><a href="hands_on_scan_filter_caution.html"><strong aria-hidden="true">4.7.</strong> Scan, Filter の注意点</a></li></ol></li><li class="chapter-item expanded "><a href="conclusion.html"><strong aria-hidden="true">5.</strong> おわりに</a></li><li class="chapter-item expanded "><a href="references.html"><strong aria-hidden="true">6.</strong> 参考</a></li></ol>            </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
@@ -386,7 +386,7 @@ RDBにおけるテーブルやカラムなどはDynamoDBでも共通の概念で
 <div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
 <h1 id="ハンズオン"><a class="header" href="#ハンズオン">ハンズオン</a></h1>
 <p>ローカル環境でDocker, JavaScript SDK を使用して DynamoDB を触ってみましょう。</p>
-<h2 id="起動"><a class="header" href="#起動">起動</a></h2>
+<h2 id="起動方法"><a class="header" href="#起動方法">起動方法</a></h2>
 <pre><code class="language-bash">git clone git@github.com:nagaokayuji/workshop-dynamodb.git
 </code></pre>
 <p>プロジェクト配下に移動し、以下を実行します。</p>
@@ -399,6 +399,12 @@ RDBにおけるテーブルやカラムなどはDynamoDBでも共通の概念で
 </ul>
 </li>
 </ul>
+<h2 id="gui-アプリケーションの紹介"><a class="header" href="#gui-アプリケーションの紹介">GUI アプリケーションの紹介</a></h2>
+<p>今回のハンズオンではインストールしなくても問題ありませんが、
+DynamoDB 用のクライアントで NoSQL Workbench というものがあります。</p>
+<p>以下のようにテーブルの項目を閲覧したり、インタラクティブにオペレーションを実行することができます。
+<img src="https://res.cloudinary.com/ddaz9etkx/image/upload/v1629657624/202108/ss_cgqn0l.png" alt="image" /></p>
+<p><a href="https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/developerguide/workbench.settingup.html">NoSQL Workbench のダウンロード - Amazon DynamoDB</a></p>
 <div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
 <h1 id="テーブル一覧を取得listtables"><a class="header" href="#テーブル一覧を取得listtables">テーブル一覧を取得(ListTables)</a></h1>
 <p>ListTables を実行してみます。</p>
@@ -449,6 +455,7 @@ dynamodb.describeTable(params, function(err, data) {
     else ppJson(data); // successful response
 });
 </code></pre>
+<h2 id="実行結果-1"><a class="header" href="#実行結果-1">実行結果</a></h2>
 <p>実行すると以下のようなレスポンスが返ってきます。</p>
 <pre><code class="language-JSON">{
   &quot;Table&quot;: {
@@ -532,7 +539,7 @@ dynamodb.scan(params, function(err, data) {
     else ppJson(data); // successful response
 });
 </code></pre>
-<h2 id="実行結果-1"><a class="header" href="#実行結果-1">実行結果</a></h2>
+<h2 id="実行結果-2"><a class="header" href="#実行結果-2">実行結果</a></h2>
 <p>これを実行すると
 以下のような結果が得られると思います。</p>
 <pre><code class="language-json">{
@@ -689,7 +696,7 @@ docClient.query(params, function(err, data) {
     else ppJson(data); // successful response
 });
 </code></pre>
-<h2 id="実行結果-2"><a class="header" href="#実行結果-2">実行結果</a></h2>
+<h2 id="実行結果-3"><a class="header" href="#実行結果-3">実行結果</a></h2>
 <p>結果は以下のようになります。</p>
 <pre><code class="language-json">{
   &quot;Items&quot;: [
@@ -884,8 +891,9 @@ docClient.query(params, function(err, data) {
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
 <h1 id="gsiを追加する"><a class="header" href="#gsiを追加する">GSIを追加する</a></h1>
-<p>UpdateTableオペレーションにより、</p>
-<p><code>Year</code> をパーティションキーとしたGSIを追加します。</p>
+<p>GSI を追加するには
+<code>UpdateTable</code> オペレーションで <code>GlobalSecondaryIndexUpdates</code>を指定します。</p>
+<p>ここでは <code>Year</code> をパーティションキーとしたGSIを追加してみます。</p>
 <pre><code class="language-jsx">var params = {
   TableName: &quot;athlete&quot;,
   AttributeDefinitions: [
@@ -925,11 +933,59 @@ dynamodb.updateTable(params, function (err, data) {
   else ppJson(data); // successful response
 });
 </code></pre>
+<h2 id="実行結果-4"><a class="header" href="#実行結果-4">実行結果</a></h2>
 <p><code>byYear</code> という名前でGSIを作成しました。</p>
-<p>（DescribeTable で確認してみましょう。）</p>
+<p>実行すると以下のようなレスポンスが得られます。</p>
+<p>なお、下記のレスポンスは DescribeTable を実行すると同様の結果となります。</p>
+<pre><code class="language-json">{
+  &quot;TableDescription&quot;: {
+    &quot;AttributeDefinitions&quot;: [
+      { &quot;AttributeName&quot;: &quot;Year&quot;, &quot;AttributeType&quot;: &quot;N&quot; },
+      { &quot;AttributeName&quot;: &quot;index&quot;, &quot;AttributeType&quot;: &quot;N&quot; },
+      { &quot;AttributeName&quot;: &quot;ID&quot;, &quot;AttributeType&quot;: &quot;N&quot; }
+    ],
+    &quot;TableName&quot;: &quot;athlete&quot;,
+    &quot;KeySchema&quot;: [
+      { &quot;AttributeName&quot;: &quot;ID&quot;, &quot;KeyType&quot;: &quot;HASH&quot; },
+      { &quot;AttributeName&quot;: &quot;index&quot;, &quot;KeyType&quot;: &quot;RANGE&quot; }
+    ],
+    &quot;TableStatus&quot;: &quot;ACTIVE&quot;,
+    &quot;CreationDateTime&quot;: &quot;2021-08-09T04:33:11.161Z&quot;,
+    &quot;ProvisionedThroughput&quot;: {
+      &quot;LastIncreaseDateTime&quot;: &quot;1970-01-01T00:00:00.000Z&quot;,
+      &quot;LastDecreaseDateTime&quot;: &quot;1970-01-01T00:00:00.000Z&quot;,
+      &quot;NumberOfDecreasesToday&quot;: 0,
+      &quot;ReadCapacityUnits&quot;: 1,
+      &quot;WriteCapacityUnits&quot;: 1
+    },
+    &quot;TableSizeBytes&quot;: 182074,
+    &quot;ItemCount&quot;: 999,
+    &quot;TableArn&quot;: &quot;arn:aws:dynamodb:ddblocal:000000000000:table/athlete&quot;,
+    &quot;GlobalSecondaryIndexes&quot;: [
+      {
+        &quot;IndexName&quot;: &quot;byYear&quot;,
+        &quot;KeySchema&quot;: [
+          { &quot;AttributeName&quot;: &quot;Year&quot;, &quot;KeyType&quot;: &quot;HASH&quot; },
+          { &quot;AttributeName&quot;: &quot;ID&quot;, &quot;KeyType&quot;: &quot;RANGE&quot; }
+        ],
+        &quot;Projection&quot;: { &quot;ProjectionType&quot;: &quot;ALL&quot; },
+        &quot;IndexStatus&quot;: &quot;CREATING&quot;,
+        &quot;Backfilling&quot;: false,
+        &quot;ProvisionedThroughput&quot;: {
+          &quot;ReadCapacityUnits&quot;: 1,
+          &quot;WriteCapacityUnits&quot;: 1
+        },
+        &quot;IndexArn&quot;: &quot;arn:aws:dynamodb:ddblocal:000000000000:table/athlete/index/byYear&quot;
+      }
+    ]
+  }
+}
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
 <h1 id="gsiを使用してqueryを実行する"><a class="header" href="#gsiを使用してqueryを実行する">GSIを使用してQueryを実行する</a></h1>
+<p>追加したGSIを使用してQueryを発行してみましょう。</p>
 <p>以下のように <code>IndexName</code> を指定し、特定の <code>Year</code> を持つ項目を取得できます。</p>
+<p>ここでは<code>Year</code>が<code>1994</code>の項目を取得してみます。</p>
 <pre><code class="language-jsx">var params = {
   TableName: &quot;athlete&quot;,
   IndexName: &quot;byYear&quot;, // 先ほど追加した GSI
@@ -950,11 +1006,126 @@ docClient.query(params, function (err, data) {
   else ppJson(data); // successful response
 });
 </code></pre>
+<p>ここで、<code>ReturnConsumedCapacity: &quot;INDEXES&quot;</code> を指定することでセカンダリインデックスのアクセスも表示することができます。</p>
+<h2 id="実行結果-5"><a class="header" href="#実行結果-5">実行結果</a></h2>
 <p>結果が5件返ってきていることを確認しておきましょう。</p>
+<pre><code class="language-json">{
+  &quot;Items&quot;: [
+    {
+      &quot;NOC&quot;: &quot;NED&quot;,
+      &quot;Sex&quot;: &quot;F&quot;,
+      &quot;index&quot;: 9,
+      &quot;City&quot;: &quot;Lillehammer&quot;,
+      &quot;Weight&quot;: 82,
+      &quot;Name&quot;: &quot;Christine Jacoba Aaftink&quot;,
+      &quot;Sport&quot;: &quot;Speed Skating&quot;,
+      &quot;Year&quot;: 1994,
+      &quot;Games&quot;: &quot;1994 Winter&quot;,
+      &quot;Event&quot;: &quot;Speed Skating Women's 1,000 metres&quot;,
+      &quot;Height&quot;: 185,
+      &quot;Team&quot;: &quot;Netherlands&quot;,
+      &quot;ID&quot;: 5,
+      &quot;Medal&quot;: null,
+      &quot;Season&quot;: &quot;Winter&quot;,
+      &quot;Age&quot;: 27
+    },
+    {
+      &quot;NOC&quot;: &quot;NED&quot;,
+      &quot;Sex&quot;: &quot;F&quot;,
+      &quot;index&quot;: 8,
+      &quot;City&quot;: &quot;Lillehammer&quot;,
+      &quot;Weight&quot;: 82,
+      &quot;Name&quot;: &quot;Christine Jacoba Aaftink&quot;,
+      &quot;Sport&quot;: &quot;Speed Skating&quot;,
+      &quot;Year&quot;: 1994,
+      &quot;Games&quot;: &quot;1994 Winter&quot;,
+      &quot;Event&quot;: &quot;Speed Skating Women's 500 metres&quot;,
+      &quot;Height&quot;: 185,
+      &quot;Team&quot;: &quot;Netherlands&quot;,
+      &quot;ID&quot;: 5,
+      &quot;Medal&quot;: null,
+      &quot;Season&quot;: &quot;Winter&quot;,
+      &quot;Age&quot;: 27
+    },
+    {
+      &quot;NOC&quot;: &quot;USA&quot;,
+      &quot;Sex&quot;: &quot;M&quot;,
+      &quot;index&quot;: 15,
+      &quot;City&quot;: &quot;Lillehammer&quot;,
+      &quot;Weight&quot;: 75,
+      &quot;Name&quot;: &quot;Per Knut Aaland&quot;,
+      &quot;Sport&quot;: &quot;Cross Country Skiing&quot;,
+      &quot;Year&quot;: 1994,
+      &quot;Games&quot;: &quot;1994 Winter&quot;,
+      &quot;Event&quot;: &quot;Cross Country Skiing Men's 30 kilometres&quot;,
+      &quot;Height&quot;: 188,
+      &quot;Team&quot;: &quot;United States&quot;,
+      &quot;ID&quot;: 6,
+      &quot;Medal&quot;: null,
+      &quot;Season&quot;: &quot;Winter&quot;,
+      &quot;Age&quot;: 33
+    },
+    {
+      &quot;NOC&quot;: &quot;USA&quot;,
+      &quot;Sex&quot;: &quot;M&quot;,
+      &quot;index&quot;: 14,
+      &quot;City&quot;: &quot;Lillehammer&quot;,
+      &quot;Weight&quot;: 75,
+      &quot;Name&quot;: &quot;Per Knut Aaland&quot;,
+      &quot;Sport&quot;: &quot;Cross Country Skiing&quot;,
+      &quot;Year&quot;: 1994,
+      &quot;Games&quot;: &quot;1994 Winter&quot;,
+      &quot;Event&quot;: &quot;Cross Country Skiing Men's 10 kilometres&quot;,
+      &quot;Height&quot;: 188,
+      &quot;Team&quot;: &quot;United States&quot;,
+      &quot;ID&quot;: 6,
+      &quot;Medal&quot;: null,
+      &quot;Season&quot;: &quot;Winter&quot;,
+      &quot;Age&quot;: 33
+    },
+    {
+      &quot;NOC&quot;: &quot;USA&quot;,
+      &quot;Sex&quot;: &quot;M&quot;,
+      &quot;index&quot;: 17,
+      &quot;City&quot;: &quot;Lillehammer&quot;,
+      &quot;Weight&quot;: 75,
+      &quot;Name&quot;: &quot;Per Knut Aaland&quot;,
+      &quot;Sport&quot;: &quot;Cross Country Skiing&quot;,
+      &quot;Year&quot;: 1994,
+      &quot;Games&quot;: &quot;1994 Winter&quot;,
+      &quot;Event&quot;: &quot;Cross Country Skiing Men's 4 x 10 kilometres Relay&quot;,
+      &quot;Height&quot;: 188,
+      &quot;Team&quot;: &quot;United States&quot;,
+      &quot;ID&quot;: 6,
+      &quot;Medal&quot;: null,
+      &quot;Season&quot;: &quot;Winter&quot;,
+      &quot;Age&quot;: 33
+    }
+  ],
+  &quot;Count&quot;: 5,
+  &quot;ScannedCount&quot;: 5,
+  &quot;LastEvaluatedKey&quot;: { &quot;Year&quot;: 1994, &quot;index&quot;: 17, &quot;ID&quot;: 6 },
+  &quot;ConsumedCapacity&quot;: {
+    &quot;TableName&quot;: &quot;athlete&quot;,
+    &quot;CapacityUnits&quot;: 0.5,
+    &quot;Table&quot;: { &quot;CapacityUnits&quot;: 0 },
+    &quot;GlobalSecondaryIndexes&quot;: { &quot;byYear&quot;: { &quot;CapacityUnits&quot;: 0.5 } }
+  }
+}
+</code></pre>
+<p>以上より、GSIを使用してQueryを発行することができました。</p>
+<h3 id="consumedcapacity-を見てみる"><a class="header" href="#consumedcapacity-を見てみる">ConsumedCapacity を見てみる</a></h3>
+<pre><code class="language-json">&quot;GlobalSecondaryIndexes&quot;: { &quot;byYear&quot;: { &quot;CapacityUnits&quot;: 0.5 } }
+</code></pre>
+<p>追加したGSIが使用されていることがわかります。</p>
 <div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
 <h1 id="scan-filter-の注意点"><a class="header" href="#scan-filter-の注意点">Scan, Filter の注意点</a></h1>
-<h2 id="q-scan-で-filter-を使えばよいのでは"><a class="header" href="#q-scan-で-filter-を使えばよいのでは">[Q] Scan で filter を使えばよいのでは？</a></h2>
-<p>以下のようなリクエストで試してみましょう。</p>
+<p>前項ではGSIを追加して特定の<code>Year</code>で検索しましたが、以下のような疑問が湧くのではないでしょうか。</p>
+<ul>
+<li>Scan で filter を使えばよいのでは？</li>
+</ul>
+<p>以下のようなScanオペレーションで試してみましょう。</p>
+<p><code>FilterExpression</code> に 前項の<code>KeyConditionExpression</code> と同一の条件を指定しています。</p>
 <pre><code class="language-jsx">var params = {
   TableName: &quot;athlete&quot;,
   Limit: 5, // 5 件取得したい
@@ -973,9 +1144,42 @@ dynamodb.scan(params, function (err, data) {
   else ppJson(data); // successful response
 });
 </code></pre>
+<h2 id="実行結果-6"><a class="header" href="#実行結果-6">実行結果</a></h2>
+<p>以下のような結果が得られました。</p>
+<pre><code class="language-json">{
+  &quot;Items&quot;: [],
+  &quot;Count&quot;: 0,
+  &quot;ScannedCount&quot;: 5,
+  &quot;LastEvaluatedKey&quot;: { &quot;index&quot;: { &quot;N&quot;: &quot;895&quot; }, &quot;ID&quot;: { &quot;N&quot;: &quot;512&quot; } },
+  &quot;ConsumedCapacity&quot;: {
+    &quot;TableName&quot;: &quot;athlete&quot;,
+    &quot;CapacityUnits&quot;: 0.5,
+    &quot;Table&quot;: { &quot;CapacityUnits&quot;: 0.5 }
+  }
+}
+</code></pre>
 <p>思った件数の結果が得られません。</p>
-<p>実は、<strong>FilterExpression はクエリの結果を取得してから</strong>絞り込みを行うため、今回のケースだと<strong>5件分Scanしてから</strong>条件に合致した項目のみを返しています。</p>
+<p><strong>FilterExpression はクエリの結果を取得してから</strong>絞り込みを行うため、今回のケースだと<strong>5件分Scanしてから</strong>条件に合致した項目のみを返しています。</p>
 <p>このため、結果が失われないようにするためには Limit を指定せずに Scan を実行する必要があり、この場合大量のキャパシティユニットを消費することになります。</p>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="おわりに"><a class="header" href="#おわりに">おわりに</a></h1>
+<h2 id="その他のトピック"><a class="header" href="#その他のトピック">その他のトピック</a></h2>
+<p>今回詳しく触れられなかったものとしては次のようなものがあり、ここで軽くご紹介します。</p>
+<h3 id="partiql"><a class="header" href="#partiql">PartiQL</a></h3>
+<p>DynamoDB で使用できる SQLライクな問合せ言語です。</p>
+<p>SQLに慣れている場合は書きやすいという利点がありますが、DynamoDBの特性を理解していないと効率の悪いクエリになってしまう懸念があります。</p>
+<h3 id="設計について"><a class="header" href="#設計について">設計について</a></h3>
+<p>詳しい設計の注意点やベストプラクティスについてはこちらにまとまっています。</p>
+<ul>
+<li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/best-practices.html">Best Practices for Designing and Architecting with DynamoDB - Amazon DynamoDB</a></li>
+</ul>
+<h3 id="dynamodb-streams"><a class="header" href="#dynamodb-streams">DynamoDB Streams</a></h3>
+<p>テーブル内のデータ項目に対する変更をイベントとしてキャプチャする機能です。
+変更をトリガーとしてリアルタイムな処理が可能になります。</p>
+<p>過去24時間以内の変更が保持されます。</p>
+<h3 id="ttl"><a class="header" href="#ttl">TTL</a></h3>
+<p>設定した期限(TTL)になると自動で項目を削除する機能です。（厳密にはTTLを過ぎてから48時間以内）
+期限は <strong>エポック形式</strong> の値にする必要があります。</p>
 <div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
 <h1 id="参考"><a class="header" href="#参考">参考</a></h1>
 <ul>

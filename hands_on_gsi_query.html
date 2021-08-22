@@ -82,7 +82,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">AWS DynamoDB ハンズオン</a></li><li class="chapter-item expanded "><a href="prerequisite_knowledges.html"><strong aria-hidden="true">1.</strong> 抑えておくべき概念</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="prerequisite_tables.html"><strong aria-hidden="true">1.1.</strong> テーブル・項目・属性</a></li><li class="chapter-item expanded "><a href="prerequisite_keys.html"><strong aria-hidden="true">1.2.</strong> キー</a></li><li class="chapter-item expanded "><a href="prerequisite_index.html"><strong aria-hidden="true">1.3.</strong> インデックス</a></li><li class="chapter-item expanded "><a href="prerequisite_capacity_unit.html"><strong aria-hidden="true">1.4.</strong> キャパシティユニット</a></li></ol></li><li class="chapter-item expanded "><a href="design.html"><strong aria-hidden="true">2.</strong> テーブル設計における注意点</a></li><li class="chapter-item expanded "><a href="operations.html"><strong aria-hidden="true">3.</strong> オペレーションの種類</a></li><li class="chapter-item expanded "><a href="hands_on.html"><strong aria-hidden="true">4.</strong> ハンズオン</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="hands_on_list_tables.html"><strong aria-hidden="true">4.1.</strong> テーブル一覧を取得</a></li><li class="chapter-item expanded "><a href="hands_on_describe_tables.html"><strong aria-hidden="true">4.2.</strong> テーブル詳細を取得</a></li><li class="chapter-item expanded "><a href="hands_on_scan.html"><strong aria-hidden="true">4.3.</strong> Scanを実行</a></li><li class="chapter-item expanded "><a href="hands_on_query.html"><strong aria-hidden="true">4.4.</strong> Queryを実行</a></li><li class="chapter-item expanded "><a href="hands_on_add_gsi.html"><strong aria-hidden="true">4.5.</strong> GSIを追加</a></li><li class="chapter-item expanded "><a href="hands_on_gsi_query.html" class="active"><strong aria-hidden="true">4.6.</strong> GSIを使用してQueryを実行</a></li><li class="chapter-item expanded "><a href="hands_on_scan_filter_caution.html"><strong aria-hidden="true">4.7.</strong> Scan, Filter の注意点</a></li></ol></li><li class="chapter-item expanded "><a href="references.html"><strong aria-hidden="true">5.</strong> 参考</a></li></ol>            </div>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">AWS DynamoDB ハンズオン</a></li><li class="chapter-item expanded "><a href="prerequisite_knowledges.html"><strong aria-hidden="true">1.</strong> 抑えておくべき概念</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="prerequisite_tables.html"><strong aria-hidden="true">1.1.</strong> テーブル・項目・属性</a></li><li class="chapter-item expanded "><a href="prerequisite_keys.html"><strong aria-hidden="true">1.2.</strong> キー</a></li><li class="chapter-item expanded "><a href="prerequisite_index.html"><strong aria-hidden="true">1.3.</strong> インデックス</a></li><li class="chapter-item expanded "><a href="prerequisite_capacity_unit.html"><strong aria-hidden="true">1.4.</strong> キャパシティユニット</a></li></ol></li><li class="chapter-item expanded "><a href="design.html"><strong aria-hidden="true">2.</strong> テーブル設計における注意点</a></li><li class="chapter-item expanded "><a href="operations.html"><strong aria-hidden="true">3.</strong> オペレーションの種類</a></li><li class="chapter-item expanded "><a href="hands_on.html"><strong aria-hidden="true">4.</strong> ハンズオン</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="hands_on_list_tables.html"><strong aria-hidden="true">4.1.</strong> テーブル一覧を取得</a></li><li class="chapter-item expanded "><a href="hands_on_describe_tables.html"><strong aria-hidden="true">4.2.</strong> テーブル詳細を取得</a></li><li class="chapter-item expanded "><a href="hands_on_scan.html"><strong aria-hidden="true">4.3.</strong> Scanを実行</a></li><li class="chapter-item expanded "><a href="hands_on_query.html"><strong aria-hidden="true">4.4.</strong> Queryを実行</a></li><li class="chapter-item expanded "><a href="hands_on_add_gsi.html"><strong aria-hidden="true">4.5.</strong> GSIを追加</a></li><li class="chapter-item expanded "><a href="hands_on_gsi_query.html" class="active"><strong aria-hidden="true">4.6.</strong> GSIを使用してQueryを実行</a></li><li class="chapter-item expanded "><a href="hands_on_scan_filter_caution.html"><strong aria-hidden="true">4.7.</strong> Scan, Filter の注意点</a></li></ol></li><li class="chapter-item expanded "><a href="conclusion.html"><strong aria-hidden="true">5.</strong> おわりに</a></li><li class="chapter-item expanded "><a href="references.html"><strong aria-hidden="true">6.</strong> 参考</a></li></ol>            </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
@@ -145,7 +145,9 @@
                     <main>
                         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
 <h1 id="gsiを使用してqueryを実行する"><a class="header" href="#gsiを使用してqueryを実行する">GSIを使用してQueryを実行する</a></h1>
+<p>追加したGSIを使用してQueryを発行してみましょう。</p>
 <p>以下のように <code>IndexName</code> を指定し、特定の <code>Year</code> を持つ項目を取得できます。</p>
+<p>ここでは<code>Year</code>が<code>1994</code>の項目を取得してみます。</p>
 <pre><code class="language-jsx">var params = {
   TableName: &quot;athlete&quot;,
   IndexName: &quot;byYear&quot;, // 先ほど追加した GSI
@@ -166,7 +168,118 @@ docClient.query(params, function (err, data) {
   else ppJson(data); // successful response
 });
 </code></pre>
+<p>ここで、<code>ReturnConsumedCapacity: &quot;INDEXES&quot;</code> を指定することでセカンダリインデックスのアクセスも表示することができます。</p>
+<h2 id="実行結果"><a class="header" href="#実行結果">実行結果</a></h2>
 <p>結果が5件返ってきていることを確認しておきましょう。</p>
+<pre><code class="language-json">{
+  &quot;Items&quot;: [
+    {
+      &quot;NOC&quot;: &quot;NED&quot;,
+      &quot;Sex&quot;: &quot;F&quot;,
+      &quot;index&quot;: 9,
+      &quot;City&quot;: &quot;Lillehammer&quot;,
+      &quot;Weight&quot;: 82,
+      &quot;Name&quot;: &quot;Christine Jacoba Aaftink&quot;,
+      &quot;Sport&quot;: &quot;Speed Skating&quot;,
+      &quot;Year&quot;: 1994,
+      &quot;Games&quot;: &quot;1994 Winter&quot;,
+      &quot;Event&quot;: &quot;Speed Skating Women's 1,000 metres&quot;,
+      &quot;Height&quot;: 185,
+      &quot;Team&quot;: &quot;Netherlands&quot;,
+      &quot;ID&quot;: 5,
+      &quot;Medal&quot;: null,
+      &quot;Season&quot;: &quot;Winter&quot;,
+      &quot;Age&quot;: 27
+    },
+    {
+      &quot;NOC&quot;: &quot;NED&quot;,
+      &quot;Sex&quot;: &quot;F&quot;,
+      &quot;index&quot;: 8,
+      &quot;City&quot;: &quot;Lillehammer&quot;,
+      &quot;Weight&quot;: 82,
+      &quot;Name&quot;: &quot;Christine Jacoba Aaftink&quot;,
+      &quot;Sport&quot;: &quot;Speed Skating&quot;,
+      &quot;Year&quot;: 1994,
+      &quot;Games&quot;: &quot;1994 Winter&quot;,
+      &quot;Event&quot;: &quot;Speed Skating Women's 500 metres&quot;,
+      &quot;Height&quot;: 185,
+      &quot;Team&quot;: &quot;Netherlands&quot;,
+      &quot;ID&quot;: 5,
+      &quot;Medal&quot;: null,
+      &quot;Season&quot;: &quot;Winter&quot;,
+      &quot;Age&quot;: 27
+    },
+    {
+      &quot;NOC&quot;: &quot;USA&quot;,
+      &quot;Sex&quot;: &quot;M&quot;,
+      &quot;index&quot;: 15,
+      &quot;City&quot;: &quot;Lillehammer&quot;,
+      &quot;Weight&quot;: 75,
+      &quot;Name&quot;: &quot;Per Knut Aaland&quot;,
+      &quot;Sport&quot;: &quot;Cross Country Skiing&quot;,
+      &quot;Year&quot;: 1994,
+      &quot;Games&quot;: &quot;1994 Winter&quot;,
+      &quot;Event&quot;: &quot;Cross Country Skiing Men's 30 kilometres&quot;,
+      &quot;Height&quot;: 188,
+      &quot;Team&quot;: &quot;United States&quot;,
+      &quot;ID&quot;: 6,
+      &quot;Medal&quot;: null,
+      &quot;Season&quot;: &quot;Winter&quot;,
+      &quot;Age&quot;: 33
+    },
+    {
+      &quot;NOC&quot;: &quot;USA&quot;,
+      &quot;Sex&quot;: &quot;M&quot;,
+      &quot;index&quot;: 14,
+      &quot;City&quot;: &quot;Lillehammer&quot;,
+      &quot;Weight&quot;: 75,
+      &quot;Name&quot;: &quot;Per Knut Aaland&quot;,
+      &quot;Sport&quot;: &quot;Cross Country Skiing&quot;,
+      &quot;Year&quot;: 1994,
+      &quot;Games&quot;: &quot;1994 Winter&quot;,
+      &quot;Event&quot;: &quot;Cross Country Skiing Men's 10 kilometres&quot;,
+      &quot;Height&quot;: 188,
+      &quot;Team&quot;: &quot;United States&quot;,
+      &quot;ID&quot;: 6,
+      &quot;Medal&quot;: null,
+      &quot;Season&quot;: &quot;Winter&quot;,
+      &quot;Age&quot;: 33
+    },
+    {
+      &quot;NOC&quot;: &quot;USA&quot;,
+      &quot;Sex&quot;: &quot;M&quot;,
+      &quot;index&quot;: 17,
+      &quot;City&quot;: &quot;Lillehammer&quot;,
+      &quot;Weight&quot;: 75,
+      &quot;Name&quot;: &quot;Per Knut Aaland&quot;,
+      &quot;Sport&quot;: &quot;Cross Country Skiing&quot;,
+      &quot;Year&quot;: 1994,
+      &quot;Games&quot;: &quot;1994 Winter&quot;,
+      &quot;Event&quot;: &quot;Cross Country Skiing Men's 4 x 10 kilometres Relay&quot;,
+      &quot;Height&quot;: 188,
+      &quot;Team&quot;: &quot;United States&quot;,
+      &quot;ID&quot;: 6,
+      &quot;Medal&quot;: null,
+      &quot;Season&quot;: &quot;Winter&quot;,
+      &quot;Age&quot;: 33
+    }
+  ],
+  &quot;Count&quot;: 5,
+  &quot;ScannedCount&quot;: 5,
+  &quot;LastEvaluatedKey&quot;: { &quot;Year&quot;: 1994, &quot;index&quot;: 17, &quot;ID&quot;: 6 },
+  &quot;ConsumedCapacity&quot;: {
+    &quot;TableName&quot;: &quot;athlete&quot;,
+    &quot;CapacityUnits&quot;: 0.5,
+    &quot;Table&quot;: { &quot;CapacityUnits&quot;: 0 },
+    &quot;GlobalSecondaryIndexes&quot;: { &quot;byYear&quot;: { &quot;CapacityUnits&quot;: 0.5 } }
+  }
+}
+</code></pre>
+<p>以上より、GSIを使用してQueryを発行することができました。</p>
+<h3 id="consumedcapacity-を見てみる"><a class="header" href="#consumedcapacity-を見てみる">ConsumedCapacity を見てみる</a></h3>
+<pre><code class="language-json">&quot;GlobalSecondaryIndexes&quot;: { &quot;byYear&quot;: { &quot;CapacityUnits&quot;: 0.5 } }
+</code></pre>
+<p>追加したGSIが使用されていることがわかります。</p>
 
                     </main>
 

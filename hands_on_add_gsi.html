@@ -82,7 +82,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">AWS DynamoDB ハンズオン</a></li><li class="chapter-item expanded "><a href="prerequisite_knowledges.html"><strong aria-hidden="true">1.</strong> 抑えておくべき概念</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="prerequisite_tables.html"><strong aria-hidden="true">1.1.</strong> テーブル・項目・属性</a></li><li class="chapter-item expanded "><a href="prerequisite_keys.html"><strong aria-hidden="true">1.2.</strong> キー</a></li><li class="chapter-item expanded "><a href="prerequisite_index.html"><strong aria-hidden="true">1.3.</strong> インデックス</a></li><li class="chapter-item expanded "><a href="prerequisite_capacity_unit.html"><strong aria-hidden="true">1.4.</strong> キャパシティユニット</a></li></ol></li><li class="chapter-item expanded "><a href="design.html"><strong aria-hidden="true">2.</strong> テーブル設計における注意点</a></li><li class="chapter-item expanded "><a href="operations.html"><strong aria-hidden="true">3.</strong> オペレーションの種類</a></li><li class="chapter-item expanded "><a href="hands_on.html"><strong aria-hidden="true">4.</strong> ハンズオン</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="hands_on_list_tables.html"><strong aria-hidden="true">4.1.</strong> テーブル一覧を取得</a></li><li class="chapter-item expanded "><a href="hands_on_describe_tables.html"><strong aria-hidden="true">4.2.</strong> テーブル詳細を取得</a></li><li class="chapter-item expanded "><a href="hands_on_scan.html"><strong aria-hidden="true">4.3.</strong> Scanを実行</a></li><li class="chapter-item expanded "><a href="hands_on_query.html"><strong aria-hidden="true">4.4.</strong> Queryを実行</a></li><li class="chapter-item expanded "><a href="hands_on_add_gsi.html" class="active"><strong aria-hidden="true">4.5.</strong> GSIを追加</a></li><li class="chapter-item expanded "><a href="hands_on_gsi_query.html"><strong aria-hidden="true">4.6.</strong> GSIを使用してQueryを実行</a></li><li class="chapter-item expanded "><a href="hands_on_scan_filter_caution.html"><strong aria-hidden="true">4.7.</strong> Scan, Filter の注意点</a></li></ol></li><li class="chapter-item expanded "><a href="references.html"><strong aria-hidden="true">5.</strong> 参考</a></li></ol>            </div>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">AWS DynamoDB ハンズオン</a></li><li class="chapter-item expanded "><a href="prerequisite_knowledges.html"><strong aria-hidden="true">1.</strong> 抑えておくべき概念</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="prerequisite_tables.html"><strong aria-hidden="true">1.1.</strong> テーブル・項目・属性</a></li><li class="chapter-item expanded "><a href="prerequisite_keys.html"><strong aria-hidden="true">1.2.</strong> キー</a></li><li class="chapter-item expanded "><a href="prerequisite_index.html"><strong aria-hidden="true">1.3.</strong> インデックス</a></li><li class="chapter-item expanded "><a href="prerequisite_capacity_unit.html"><strong aria-hidden="true">1.4.</strong> キャパシティユニット</a></li></ol></li><li class="chapter-item expanded "><a href="design.html"><strong aria-hidden="true">2.</strong> テーブル設計における注意点</a></li><li class="chapter-item expanded "><a href="operations.html"><strong aria-hidden="true">3.</strong> オペレーションの種類</a></li><li class="chapter-item expanded "><a href="hands_on.html"><strong aria-hidden="true">4.</strong> ハンズオン</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="hands_on_list_tables.html"><strong aria-hidden="true">4.1.</strong> テーブル一覧を取得</a></li><li class="chapter-item expanded "><a href="hands_on_describe_tables.html"><strong aria-hidden="true">4.2.</strong> テーブル詳細を取得</a></li><li class="chapter-item expanded "><a href="hands_on_scan.html"><strong aria-hidden="true">4.3.</strong> Scanを実行</a></li><li class="chapter-item expanded "><a href="hands_on_query.html"><strong aria-hidden="true">4.4.</strong> Queryを実行</a></li><li class="chapter-item expanded "><a href="hands_on_add_gsi.html" class="active"><strong aria-hidden="true">4.5.</strong> GSIを追加</a></li><li class="chapter-item expanded "><a href="hands_on_gsi_query.html"><strong aria-hidden="true">4.6.</strong> GSIを使用してQueryを実行</a></li><li class="chapter-item expanded "><a href="hands_on_scan_filter_caution.html"><strong aria-hidden="true">4.7.</strong> Scan, Filter の注意点</a></li></ol></li><li class="chapter-item expanded "><a href="conclusion.html"><strong aria-hidden="true">5.</strong> おわりに</a></li><li class="chapter-item expanded "><a href="references.html"><strong aria-hidden="true">6.</strong> 参考</a></li></ol>            </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
@@ -145,8 +145,9 @@
                     <main>
                         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
 <h1 id="gsiを追加する"><a class="header" href="#gsiを追加する">GSIを追加する</a></h1>
-<p>UpdateTableオペレーションにより、</p>
-<p><code>Year</code> をパーティションキーとしたGSIを追加します。</p>
+<p>GSI を追加するには
+<code>UpdateTable</code> オペレーションで <code>GlobalSecondaryIndexUpdates</code>を指定します。</p>
+<p>ここでは <code>Year</code> をパーティションキーとしたGSIを追加してみます。</p>
 <pre><code class="language-jsx">var params = {
   TableName: &quot;athlete&quot;,
   AttributeDefinitions: [
@@ -186,8 +187,54 @@ dynamodb.updateTable(params, function (err, data) {
   else ppJson(data); // successful response
 });
 </code></pre>
+<h2 id="実行結果"><a class="header" href="#実行結果">実行結果</a></h2>
 <p><code>byYear</code> という名前でGSIを作成しました。</p>
-<p>（DescribeTable で確認してみましょう。）</p>
+<p>実行すると以下のようなレスポンスが得られます。</p>
+<p>なお、下記のレスポンスは DescribeTable を実行すると同様の結果となります。</p>
+<pre><code class="language-json">{
+  &quot;TableDescription&quot;: {
+    &quot;AttributeDefinitions&quot;: [
+      { &quot;AttributeName&quot;: &quot;Year&quot;, &quot;AttributeType&quot;: &quot;N&quot; },
+      { &quot;AttributeName&quot;: &quot;index&quot;, &quot;AttributeType&quot;: &quot;N&quot; },
+      { &quot;AttributeName&quot;: &quot;ID&quot;, &quot;AttributeType&quot;: &quot;N&quot; }
+    ],
+    &quot;TableName&quot;: &quot;athlete&quot;,
+    &quot;KeySchema&quot;: [
+      { &quot;AttributeName&quot;: &quot;ID&quot;, &quot;KeyType&quot;: &quot;HASH&quot; },
+      { &quot;AttributeName&quot;: &quot;index&quot;, &quot;KeyType&quot;: &quot;RANGE&quot; }
+    ],
+    &quot;TableStatus&quot;: &quot;ACTIVE&quot;,
+    &quot;CreationDateTime&quot;: &quot;2021-08-09T04:33:11.161Z&quot;,
+    &quot;ProvisionedThroughput&quot;: {
+      &quot;LastIncreaseDateTime&quot;: &quot;1970-01-01T00:00:00.000Z&quot;,
+      &quot;LastDecreaseDateTime&quot;: &quot;1970-01-01T00:00:00.000Z&quot;,
+      &quot;NumberOfDecreasesToday&quot;: 0,
+      &quot;ReadCapacityUnits&quot;: 1,
+      &quot;WriteCapacityUnits&quot;: 1
+    },
+    &quot;TableSizeBytes&quot;: 182074,
+    &quot;ItemCount&quot;: 999,
+    &quot;TableArn&quot;: &quot;arn:aws:dynamodb:ddblocal:000000000000:table/athlete&quot;,
+    &quot;GlobalSecondaryIndexes&quot;: [
+      {
+        &quot;IndexName&quot;: &quot;byYear&quot;,
+        &quot;KeySchema&quot;: [
+          { &quot;AttributeName&quot;: &quot;Year&quot;, &quot;KeyType&quot;: &quot;HASH&quot; },
+          { &quot;AttributeName&quot;: &quot;ID&quot;, &quot;KeyType&quot;: &quot;RANGE&quot; }
+        ],
+        &quot;Projection&quot;: { &quot;ProjectionType&quot;: &quot;ALL&quot; },
+        &quot;IndexStatus&quot;: &quot;CREATING&quot;,
+        &quot;Backfilling&quot;: false,
+        &quot;ProvisionedThroughput&quot;: {
+          &quot;ReadCapacityUnits&quot;: 1,
+          &quot;WriteCapacityUnits&quot;: 1
+        },
+        &quot;IndexArn&quot;: &quot;arn:aws:dynamodb:ddblocal:000000000000:table/athlete/index/byYear&quot;
+      }
+    ]
+  }
+}
+</code></pre>
 
                     </main>
 

@@ -82,7 +82,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">AWS DynamoDB ハンズオン</a></li><li class="chapter-item expanded "><a href="prerequisite_knowledges.html"><strong aria-hidden="true">1.</strong> 抑えておくべき概念</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="prerequisite_tables.html"><strong aria-hidden="true">1.1.</strong> テーブル・項目・属性</a></li><li class="chapter-item expanded "><a href="prerequisite_keys.html"><strong aria-hidden="true">1.2.</strong> キー</a></li><li class="chapter-item expanded "><a href="prerequisite_index.html"><strong aria-hidden="true">1.3.</strong> インデックス</a></li><li class="chapter-item expanded "><a href="prerequisite_capacity_unit.html"><strong aria-hidden="true">1.4.</strong> キャパシティユニット</a></li></ol></li><li class="chapter-item expanded "><a href="design.html"><strong aria-hidden="true">2.</strong> テーブル設計における注意点</a></li><li class="chapter-item expanded "><a href="operations.html"><strong aria-hidden="true">3.</strong> オペレーションの種類</a></li><li class="chapter-item expanded "><a href="hands_on.html"><strong aria-hidden="true">4.</strong> ハンズオン</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="hands_on_list_tables.html"><strong aria-hidden="true">4.1.</strong> テーブル一覧を取得</a></li><li class="chapter-item expanded "><a href="hands_on_describe_tables.html"><strong aria-hidden="true">4.2.</strong> テーブル詳細を取得</a></li><li class="chapter-item expanded "><a href="hands_on_scan.html"><strong aria-hidden="true">4.3.</strong> Scanを実行</a></li><li class="chapter-item expanded "><a href="hands_on_query.html"><strong aria-hidden="true">4.4.</strong> Queryを実行</a></li><li class="chapter-item expanded "><a href="hands_on_add_gsi.html"><strong aria-hidden="true">4.5.</strong> GSIを追加</a></li><li class="chapter-item expanded "><a href="hands_on_gsi_query.html"><strong aria-hidden="true">4.6.</strong> GSIを使用してQueryを実行</a></li><li class="chapter-item expanded "><a href="hands_on_scan_filter_caution.html" class="active"><strong aria-hidden="true">4.7.</strong> Scan, Filter の注意点</a></li></ol></li><li class="chapter-item expanded "><a href="references.html"><strong aria-hidden="true">5.</strong> 参考</a></li></ol>            </div>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">AWS DynamoDB ハンズオン</a></li><li class="chapter-item expanded "><a href="prerequisite_knowledges.html"><strong aria-hidden="true">1.</strong> 抑えておくべき概念</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="prerequisite_tables.html"><strong aria-hidden="true">1.1.</strong> テーブル・項目・属性</a></li><li class="chapter-item expanded "><a href="prerequisite_keys.html"><strong aria-hidden="true">1.2.</strong> キー</a></li><li class="chapter-item expanded "><a href="prerequisite_index.html"><strong aria-hidden="true">1.3.</strong> インデックス</a></li><li class="chapter-item expanded "><a href="prerequisite_capacity_unit.html"><strong aria-hidden="true">1.4.</strong> キャパシティユニット</a></li></ol></li><li class="chapter-item expanded "><a href="design.html"><strong aria-hidden="true">2.</strong> テーブル設計における注意点</a></li><li class="chapter-item expanded "><a href="operations.html"><strong aria-hidden="true">3.</strong> オペレーションの種類</a></li><li class="chapter-item expanded "><a href="hands_on.html"><strong aria-hidden="true">4.</strong> ハンズオン</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="hands_on_list_tables.html"><strong aria-hidden="true">4.1.</strong> テーブル一覧を取得</a></li><li class="chapter-item expanded "><a href="hands_on_describe_tables.html"><strong aria-hidden="true">4.2.</strong> テーブル詳細を取得</a></li><li class="chapter-item expanded "><a href="hands_on_scan.html"><strong aria-hidden="true">4.3.</strong> Scanを実行</a></li><li class="chapter-item expanded "><a href="hands_on_query.html"><strong aria-hidden="true">4.4.</strong> Queryを実行</a></li><li class="chapter-item expanded "><a href="hands_on_add_gsi.html"><strong aria-hidden="true">4.5.</strong> GSIを追加</a></li><li class="chapter-item expanded "><a href="hands_on_gsi_query.html"><strong aria-hidden="true">4.6.</strong> GSIを使用してQueryを実行</a></li><li class="chapter-item expanded "><a href="hands_on_scan_filter_caution.html" class="active"><strong aria-hidden="true">4.7.</strong> Scan, Filter の注意点</a></li></ol></li><li class="chapter-item expanded "><a href="conclusion.html"><strong aria-hidden="true">5.</strong> おわりに</a></li><li class="chapter-item expanded "><a href="references.html"><strong aria-hidden="true">6.</strong> 参考</a></li></ol>            </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
@@ -145,8 +145,12 @@
                     <main>
                         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
 <h1 id="scan-filter-の注意点"><a class="header" href="#scan-filter-の注意点">Scan, Filter の注意点</a></h1>
-<h2 id="q-scan-で-filter-を使えばよいのでは"><a class="header" href="#q-scan-で-filter-を使えばよいのでは">[Q] Scan で filter を使えばよいのでは？</a></h2>
-<p>以下のようなリクエストで試してみましょう。</p>
+<p>前項ではGSIを追加して特定の<code>Year</code>で検索しましたが、以下のような疑問が湧くのではないでしょうか。</p>
+<ul>
+<li>Scan で filter を使えばよいのでは？</li>
+</ul>
+<p>以下のようなScanオペレーションで試してみましょう。</p>
+<p><code>FilterExpression</code> に 前項の<code>KeyConditionExpression</code> と同一の条件を指定しています。</p>
 <pre><code class="language-jsx">var params = {
   TableName: &quot;athlete&quot;,
   Limit: 5, // 5 件取得したい
@@ -165,8 +169,22 @@ dynamodb.scan(params, function (err, data) {
   else ppJson(data); // successful response
 });
 </code></pre>
+<h2 id="実行結果"><a class="header" href="#実行結果">実行結果</a></h2>
+<p>以下のような結果が得られました。</p>
+<pre><code class="language-json">{
+  &quot;Items&quot;: [],
+  &quot;Count&quot;: 0,
+  &quot;ScannedCount&quot;: 5,
+  &quot;LastEvaluatedKey&quot;: { &quot;index&quot;: { &quot;N&quot;: &quot;895&quot; }, &quot;ID&quot;: { &quot;N&quot;: &quot;512&quot; } },
+  &quot;ConsumedCapacity&quot;: {
+    &quot;TableName&quot;: &quot;athlete&quot;,
+    &quot;CapacityUnits&quot;: 0.5,
+    &quot;Table&quot;: { &quot;CapacityUnits&quot;: 0.5 }
+  }
+}
+</code></pre>
 <p>思った件数の結果が得られません。</p>
-<p>実は、<strong>FilterExpression はクエリの結果を取得してから</strong>絞り込みを行うため、今回のケースだと<strong>5件分Scanしてから</strong>条件に合致した項目のみを返しています。</p>
+<p><strong>FilterExpression はクエリの結果を取得してから</strong>絞り込みを行うため、今回のケースだと<strong>5件分Scanしてから</strong>条件に合致した項目のみを返しています。</p>
 <p>このため、結果が失われないようにするためには Limit を指定せずに Scan を実行する必要があり、この場合大量のキャパシティユニットを消費することになります。</p>
 
                     </main>
@@ -177,7 +195,7 @@ dynamodb.scan(params, function (err, data) {
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
-                                                    <a rel="next" href="references.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                                    <a rel="next" href="conclusion.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -191,7 +209,7 @@ dynamodb.scan(params, function (err, data) {
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
-                                    <a rel="next" href="references.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                    <a rel="next" href="conclusion.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                             </nav>
