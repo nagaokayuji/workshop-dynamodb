@@ -16,6 +16,8 @@ dynamodb.describeTable(params, function(err, data) {
 });
 ```
 
+## 実行結果
+
 実行すると以下のようなレスポンスが返ってきます。
 
 ```JSON
