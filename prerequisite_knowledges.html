@@ -82,7 +82,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">AWS DynamoDb ハンズオン</a></li><li class="chapter-item expanded "><a href="prerequisite_knowledges.html" class="active"><strong aria-hidden="true">1.</strong> 抑えておくべき概念</a></li><li class="chapter-item expanded "><a href="design.html"><strong aria-hidden="true">2.</strong> テーブル設計における注意点</a></li><li class="chapter-item expanded "><a href="operations.html"><strong aria-hidden="true">3.</strong> オペレーション</a></li><li class="chapter-item expanded "><a href="hands_on.html"><strong aria-hidden="true">4.</strong> ハンズオン</a></li><li class="chapter-item expanded "><a href="references.html"><strong aria-hidden="true">5.</strong> 参考</a></li></ol>            </div>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">AWS DynamoDB ハンズオン</a></li><li class="chapter-item expanded "><a href="prerequisite_knowledges.html" class="active"><strong aria-hidden="true">1.</strong> 抑えておくべき概念</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="prerequisite_index.html"><strong aria-hidden="true">1.1.</strong> インデックス</a></li><li class="chapter-item expanded "><a href="prerequisite_capacity_unit.html"><strong aria-hidden="true">1.2.</strong> キャパシティユニット</a></li></ol></li><li class="chapter-item expanded "><a href="design.html"><strong aria-hidden="true">2.</strong> テーブル設計における注意点</a></li><li class="chapter-item expanded "><a href="operations.html"><strong aria-hidden="true">3.</strong> オペレーション</a></li><li class="chapter-item expanded "><a href="hands_on.html"><strong aria-hidden="true">4.</strong> ハンズオン</a></li><li class="chapter-item expanded "><a href="references.html"><strong aria-hidden="true">5.</strong> 参考</a></li></ol>            </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
@@ -185,43 +185,6 @@
 </ul>
 <p><strong>パーティションキーとソートキーで一意</strong>になる必要があります。</p>
 <p>→ RDBのように3列以上での複合主キーは設定できません。</p>
-<h2 id="インデックスについて"><a class="header" href="#インデックスについて">インデックスについて</a></h2>
-<p>非常に重要な概念です。</p>
-<p>Query, Scan オペレーションのために使用します。</p>
-<ul>
-<li>GSI(グローバルセカンダリインデックス)
-<ul>
-<li>インデックスのプライマリキーを任意に指定可能</li>
-<li>一意にならなくてもよい</li>
-<li><strong>キャパシティユニットを消費</strong>する</li>
-<li>テーブル作成後に追加可能</li>
-</ul>
-</li>
-<li>LSI(ローカルセカンダリインデックス)
-<ul>
-<li>テーブルのパーティションキーを使用</li>
-<li>ソートキーは任意に指定可能</li>
-<li><strong>テーブル作成時</strong>に指定する（テーブル作成後はLSIを追加できない）</li>
-</ul>
-</li>
-</ul>
-<h2 id="キャパシティユニット"><a class="header" href="#キャパシティユニット">キャパシティユニット</a></h2>
-<p>書き込み・読み込みリクエストに対して<strong>キャパシティユニット</strong>という概念があり、</p>
-<p>消費したキャパシティユニットに応じた料金が請求されます。</p>
-<p><a href="https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/developerguide/ProvisionedThroughput.html">DynamoDB のプロビジョンされた容量テーブルの設定の管理</a></p>
-<ul>
-<li>RCU
-<ul>
-<li>1 RCU - 最大サイズ 4 KB の項目について、1 秒あたり 1 回の強力な整合性のある読み込み、あるいは 1 秒あたり 2 回の結果整合性のある読み込み</li>
-</ul>
-</li>
-<li>WCU
-<ul>
-<li>1 WCU - 最大サイズが 1 KB の項目について、1 秒あたり 1 回の書き込み</li>
-<li>トランザクション書き込みリクエストでは2倍消費</li>
-</ul>
-</li>
-</ul>
 
                     </main>
 
@@ -231,7 +194,7 @@
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
-                                                    <a rel="next" href="design.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                                    <a rel="next" href="prerequisite_index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -245,7 +208,7 @@
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
-                                    <a rel="next" href="design.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                    <a rel="next" href="prerequisite_index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                             </nav>
