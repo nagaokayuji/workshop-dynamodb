@@ -145,9 +145,9 @@
                     <main>
                         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
 <h1 id="テーブルのデータを取得scan"><a class="header" href="#テーブルのデータを取得scan">テーブルのデータを取得(Scan)</a></h1>
-<p>Scanでは簡単にテーブルの内容を取得することができます。</p>
-<p>後述する Query と比べると大量の RCU を消費するため注意です。</p>
-<p>3件取得してみます。</p>
+<p>Scanでは簡単にテーブルの内容を（複数件）取得することができます。</p>
+<p>後述する Query と比べると大量の RCU を消費するため注意が必要です。</p>
+<p>様々なオプションが指定できますが、今回は<code>Limit</code> を指定し、3件取得してみます。</p>
 <pre><code class="language-jsx">var params = {
     TableName: 'athlete',
     Limit: 3, // 3件取得
@@ -158,6 +158,141 @@ dynamodb.scan(params, function(err, data) {
     else ppJson(data); // successful response
 });
 </code></pre>
+<p>これを実行すると
+以下のような結果が得られると思います。</p>
+<pre><code class="language-json">{
+  &quot;Items&quot;: [
+    {
+      &quot;NOC&quot;: { &quot;S&quot;: &quot;NOR&quot; },
+      &quot;Sex&quot;: { &quot;S&quot;: &quot;M&quot; },
+      &quot;index&quot;: { &quot;N&quot;: &quot;118&quot; },
+      &quot;City&quot;: { &quot;S&quot;: &quot;Barcelona&quot; },
+      &quot;Weight&quot;: { &quot;N&quot;: &quot;75&quot; },
+      &quot;Name&quot;: { &quot;S&quot;: &quot;Morten Gjerdrum Aasen&quot; },
+      &quot;Sport&quot;: { &quot;S&quot;: &quot;Equestrianism&quot; },
+      &quot;Year&quot;: { &quot;N&quot;: &quot;1992&quot; },
+      &quot;Games&quot;: { &quot;S&quot;: &quot;1992 Summer&quot; },
+      &quot;Event&quot;: { &quot;S&quot;: &quot;Equestrianism Mixed Jumping, Individual&quot; },
+      &quot;Height&quot;: { &quot;N&quot;: &quot;185&quot; },
+      &quot;Team&quot;: { &quot;S&quot;: &quot;Norway&quot; },
+      &quot;ID&quot;: { &quot;N&quot;: &quot;43&quot; },
+      &quot;Medal&quot;: { &quot;NULL&quot;: true },
+      &quot;Season&quot;: { &quot;S&quot;: &quot;Summer&quot; },
+      &quot;Age&quot;: { &quot;N&quot;: &quot;34&quot; }
+    },
+    {
+      &quot;NOC&quot;: { &quot;S&quot;: &quot;UZB&quot; },
+      &quot;Sex&quot;: { &quot;S&quot;: &quot;M&quot; },
+      &quot;index&quot;: { &quot;N&quot;: &quot;610&quot; },
+      &quot;City&quot;: { &quot;S&quot;: &quot;Athina&quot; },
+      &quot;Weight&quot;: { &quot;N&quot;: &quot;73&quot; },
+      &quot;Name&quot;: { &quot;S&quot;: &quot;Sherzod Abdurahmonov&quot; },
+      &quot;Sport&quot;: { &quot;S&quot;: &quot;Boxing&quot; },
+      &quot;Year&quot;: { &quot;N&quot;: &quot;2004&quot; },
+      &quot;Games&quot;: { &quot;S&quot;: &quot;2004 Summer&quot; },
+      &quot;Event&quot;: { &quot;S&quot;: &quot;Boxing Men's Middleweight&quot; },
+      &quot;Height&quot;: { &quot;N&quot;: &quot;178&quot; },
+      &quot;Team&quot;: { &quot;S&quot;: &quot;Uzbekistan&quot; },
+      &quot;ID&quot;: { &quot;N&quot;: &quot;352&quot; },
+      &quot;Medal&quot;: { &quot;NULL&quot;: true },
+      &quot;Season&quot;: { &quot;S&quot;: &quot;Summer&quot; },
+      &quot;Age&quot;: { &quot;N&quot;: &quot;22&quot; }
+    },
+    {
+      &quot;NOC&quot;: { &quot;S&quot;: &quot;CRC&quot; },
+      &quot;Sex&quot;: { &quot;S&quot;: &quot;M&quot; },
+      &quot;index&quot;: { &quot;N&quot;: &quot;907&quot; },
+      &quot;City&quot;: { &quot;S&quot;: &quot;Los Angeles&quot; },
+      &quot;Weight&quot;: { &quot;N&quot;: &quot;72&quot; },
+      &quot;Name&quot;: { &quot;S&quot;: &quot;Glen Abrahams Martnez&quot; },
+      &quot;Sport&quot;: { &quot;S&quot;: &quot;Athletics&quot; },
+      &quot;Year&quot;: { &quot;N&quot;: &quot;1984&quot; },
+      &quot;Games&quot;: { &quot;S&quot;: &quot;1984 Summer&quot; },
+      &quot;Event&quot;: { &quot;S&quot;: &quot;Athletics Men's 100 metres&quot; },
+      &quot;Height&quot;: { &quot;N&quot;: &quot;179&quot; },
+      &quot;Team&quot;: { &quot;S&quot;: &quot;Costa Rica&quot; },
+      &quot;ID&quot;: { &quot;N&quot;: &quot;517&quot; },
+      &quot;Medal&quot;: { &quot;NULL&quot;: true },
+      &quot;Season&quot;: { &quot;S&quot;: &quot;Summer&quot; },
+      &quot;Age&quot;: { &quot;N&quot;: &quot;22&quot; }
+    }
+  ],
+  &quot;Count&quot;: 3,
+  &quot;ScannedCount&quot;: 3,
+  &quot;LastEvaluatedKey&quot;: { &quot;index&quot;: { &quot;N&quot;: &quot;907&quot; }, &quot;ID&quot;: { &quot;N&quot;: &quot;517&quot; } },
+  &quot;ConsumedCapacity&quot;: { &quot;TableName&quot;: &quot;athlete&quot;, &quot;CapacityUnits&quot;: 0.5 }
+}
+</code></pre>
+<h3 id="結果の見方"><a class="header" href="#結果の見方">結果の見方</a></h3>
+<ul>
+<li>Items
+<ul>
+<li>ここに取得したデータが入っています。</li>
+</ul>
+</li>
+<li>Count
+<ul>
+<li>結果の件数です。</li>
+</ul>
+</li>
+<li>ScannedCount
+<ul>
+<li>スキャンされた件数です。</li>
+<li>FilterExpression 等で絞り込まれる前の件数を指します。</li>
+</ul>
+</li>
+<li>LastEvaluatedKey
+<ul>
+<li>オペレーションが終了したときのプライマリキーです。</li>
+<li>すべての要素がScanされた場合は空になります。</li>
+</ul>
+</li>
+</ul>
+<h2 id="scanのオプション"><a class="header" href="#scanのオプション">Scanのオプション</a></h2>
+<ul>
+<li>FilterExpression
+<ul>
+<li>結果を絞り込むことができます。</li>
+<li>表示される結果を絞り込むため、指定しても消費する RCU は変わりません。</li>
+</ul>
+</li>
+<li>IndexName
+<ul>
+<li>セカンダリインデックスを使用する場合に指定します。</li>
+</ul>
+</li>
+<li>Select
+<ul>
+<li>結果の属性を指定できます。</li>
+<li>指定できる内容は以下です。
+<ul>
+<li>ALL_ATTRIBUTES
+<ul>
+<li>すべての属性を返します。</li>
+<li>何も指定しない場合はこれが指定されます。</li>
+</ul>
+</li>
+<li>ALL_PROJECTED_ATTRIBUTES
+<ul>
+<li>インデックスで設定されたすべての属性を返します。</li>
+<li>インデックス使用の場合に指定できます。</li>
+</ul>
+</li>
+<li>SPECIFIC_ATTRIBUTES
+<ul>
+<li><code>AttributesToGet</code> に指定した属性のみを返します。</li>
+</ul>
+</li>
+<li>COUNT
+<ul>
+<li>マッチした件数のみを返します。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
                     </main>
 
