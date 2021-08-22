@@ -82,7 +82,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">AWS DynamoDB ハンズオン</a></li><li class="chapter-item expanded "><a href="prerequisite_knowledges.html" class="active"><strong aria-hidden="true">1.</strong> 抑えておくべき概念</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="prerequisite_index.html"><strong aria-hidden="true">1.1.</strong> インデックス</a></li><li class="chapter-item expanded "><a href="prerequisite_capacity_unit.html"><strong aria-hidden="true">1.2.</strong> キャパシティユニット</a></li></ol></li><li class="chapter-item expanded "><a href="design.html"><strong aria-hidden="true">2.</strong> テーブル設計における注意点</a></li><li class="chapter-item expanded "><a href="operations.html"><strong aria-hidden="true">3.</strong> オペレーション</a></li><li class="chapter-item expanded "><a href="hands_on.html"><strong aria-hidden="true">4.</strong> ハンズオン</a></li><li class="chapter-item expanded "><a href="references.html"><strong aria-hidden="true">5.</strong> 参考</a></li></ol>            </div>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">AWS DynamoDB ハンズオン</a></li><li class="chapter-item expanded "><a href="prerequisite_knowledges.html" class="active"><strong aria-hidden="true">1.</strong> 抑えておくべき概念</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="prerequisite_tables.html"><strong aria-hidden="true">1.1.</strong> テーブル・項目・属性</a></li><li class="chapter-item expanded "><a href="prerequisite_keys.html"><strong aria-hidden="true">1.2.</strong> キー</a></li><li class="chapter-item expanded "><a href="prerequisite_index.html"><strong aria-hidden="true">1.3.</strong> インデックス</a></li><li class="chapter-item expanded "><a href="prerequisite_capacity_unit.html"><strong aria-hidden="true">1.4.</strong> キャパシティユニット</a></li></ol></li><li class="chapter-item expanded "><a href="design.html"><strong aria-hidden="true">2.</strong> テーブル設計における注意点</a></li><li class="chapter-item expanded "><a href="operations.html"><strong aria-hidden="true">3.</strong> オペレーション</a></li><li class="chapter-item expanded "><a href="hands_on.html"><strong aria-hidden="true">4.</strong> ハンズオン</a></li><li class="chapter-item expanded "><a href="references.html"><strong aria-hidden="true">5.</strong> 参考</a></li></ol>            </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
@@ -145,46 +145,12 @@
                     <main>
                         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
 <h1 id="抑えておくべき概念"><a class="header" href="#抑えておくべき概念">抑えておくべき概念</a></h1>
-<h2 id="テーブル項目属性"><a class="header" href="#テーブル項目属性">テーブル・項目・属性</a></h2>
+<p>DynamoDB を使用する上で必要になる事項について述べます。</p>
 <ul>
-<li>テーブル(Tables)
-<ul>
-<li>データのコレクション</li>
-<li>RDBのテーブルと同様</li>
+<li>テーブル・項目・属性</li>
+<li>キー</li>
+<li>インデックス</li>
 </ul>
-</li>
-<li>項目(Items)
-<ul>
-<li>一意に識別可能な属性のグループ</li>
-<li>RDBの行・レコードに対応</li>
-</ul>
-</li>
-<li>属性(Attributes)
-<ul>
-<li>データ要素</li>
-<li>RDBの列・フィールドに対応</li>
-</ul>
-</li>
-</ul>
-<h2 id="キー"><a class="header" href="#キー">キー</a></h2>
-<ul>
-<li>パーティションキー
-<ul>
-<li>必ず必要</li>
-<li>ハッシュ関数への入力として使用される</li>
-<li>物理的に<strong>項目が保存されるパーティション</strong>が決まる</li>
-</ul>
-</li>
-<li>ソートキー
-<ul>
-<li>指定しなくても良い</li>
-<li>パーティションキーと合わせて複合主キーとなる必要がある</li>
-<li>同じパーティションキーの項目はソートキーでソートされて保存される</li>
-</ul>
-</li>
-</ul>
-<p><strong>パーティションキーとソートキーで一意</strong>になる必要があります。</p>
-<p>→ RDBのように3列以上での複合主キーは設定できません。</p>
 
                     </main>
 
@@ -194,7 +160,7 @@
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
-                                                    <a rel="next" href="prerequisite_index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                                    <a rel="next" href="prerequisite_tables.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -208,7 +174,7 @@
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
-                                    <a rel="next" href="prerequisite_index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                    <a rel="next" href="prerequisite_tables.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                             </nav>
