@@ -1,4 +1,4 @@
-# AWS DynamoDb ハンズオン
+# AWS DynamoDB ハンズオン
 
 ## DynamoDBとは？
 
