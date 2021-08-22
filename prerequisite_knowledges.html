@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>参考 - DynamoDB ハンズオン</title>
+        <title>抑えておくべき概念 - DynamoDB ハンズオン</title>
                 
 
         <!-- Custom HTML head -->
@@ -82,7 +82,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">AWS DynamoDb ハンズオン</a></li><li class="chapter-item expanded "><a href="prerequisite_knowledges.html"><strong aria-hidden="true">1.</strong> 抑えておくべき概念</a></li><li class="chapter-item expanded "><a href="design.html"><strong aria-hidden="true">2.</strong> テーブル設計における注意点</a></li><li class="chapter-item expanded "><a href="operations.html"><strong aria-hidden="true">3.</strong> オペレーション</a></li><li class="chapter-item expanded "><a href="hands_on.html"><strong aria-hidden="true">4.</strong> ハンズオン</a></li><li class="chapter-item expanded "><a href="references.html" class="active"><strong aria-hidden="true">5.</strong> 参考</a></li></ol>            </div>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">AWS DynamoDb ハンズオン</a></li><li class="chapter-item expanded "><a href="prerequisite_knowledges.html" class="active"><strong aria-hidden="true">1.</strong> 抑えておくべき概念</a></li><li class="chapter-item expanded "><a href="design.html"><strong aria-hidden="true">2.</strong> テーブル設計における注意点</a></li><li class="chapter-item expanded "><a href="operations.html"><strong aria-hidden="true">3.</strong> オペレーション</a></li><li class="chapter-item expanded "><a href="hands_on.html"><strong aria-hidden="true">4.</strong> ハンズオン</a></li><li class="chapter-item expanded "><a href="references.html"><strong aria-hidden="true">5.</strong> 参考</a></li></ol>            </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
@@ -144,19 +144,96 @@
                 <div id="content" class="content">
                     <main>
                         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
-<h1 id="参考"><a class="header" href="#参考">参考</a></h1>
+<h1 id="抑えておくべき概念"><a class="header" href="#抑えておくべき概念">抑えておくべき概念</a></h1>
+<h2 id="テーブル項目属性"><a class="header" href="#テーブル項目属性">テーブル・項目・属性</a></h2>
 <ul>
-<li><a href="https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/APIReference/API_Query.html">Query - Amazon DynamoDB</a></li>
+<li>テーブル(Tables)
+<ul>
+<li>データのコレクション</li>
+<li>RDBのテーブルと同様</li>
+</ul>
+</li>
+<li>項目(Items)
+<ul>
+<li>一意に識別可能な属性のグループ</li>
+<li>RDBの行・レコードに対応</li>
+</ul>
+</li>
+<li>属性(Attributes)
+<ul>
+<li>データ要素</li>
+<li>RDBの列・フィールドに対応</li>
+</ul>
+</li>
+</ul>
+<h2 id="キー"><a class="header" href="#キー">キー</a></h2>
+<ul>
+<li>パーティションキー
+<ul>
+<li>必ず必要</li>
+<li>ハッシュ関数への入力として使用される</li>
+<li>物理的に<strong>項目が保存されるパーティション</strong>が決まる</li>
+</ul>
+</li>
+<li>ソートキー
+<ul>
+<li>指定しなくても良い</li>
+<li>パーティションキーと合わせて複合主キーとなる必要がある</li>
+<li>同じパーティションキーの項目はソートキーでソートされて保存される</li>
+</ul>
+</li>
+</ul>
+<p><strong>パーティションキーとソートキーで一意</strong>になる必要があります。</p>
+<p>→ RDBのように3列以上での複合主キーは設定できません。</p>
+<h2 id="インデックスについて"><a class="header" href="#インデックスについて">インデックスについて</a></h2>
+<p>非常に重要な概念です。</p>
+<p>Query, Scan オペレーションのために使用します。</p>
+<ul>
+<li>GSI(グローバルセカンダリインデックス)
+<ul>
+<li>インデックスのプライマリキーを任意に指定可能</li>
+<li>一意にならなくてもよい</li>
+<li><strong>キャパシティユニットを消費</strong>する</li>
+<li>テーブル作成後に追加可能</li>
+</ul>
+</li>
+<li>LSI(ローカルセカンダリインデックス)
+<ul>
+<li>テーブルのパーティションキーを使用</li>
+<li>ソートキーは任意に指定可能</li>
+<li><strong>テーブル作成時</strong>に指定する（テーブル作成後はLSIを追加できない）</li>
+</ul>
+</li>
+</ul>
+<h2 id="キャパシティユニット"><a class="header" href="#キャパシティユニット">キャパシティユニット</a></h2>
+<p>書き込み・読み込みリクエストに対して<strong>キャパシティユニット</strong>という概念があり、</p>
+<p>消費したキャパシティユニットに応じた料金が請求されます。</p>
+<p><a href="https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/developerguide/ProvisionedThroughput.html">DynamoDB のプロビジョンされた容量テーブルの設定の管理</a></p>
+<ul>
+<li>RCU
+<ul>
+<li>1 RCU - 最大サイズ 4 KB の項目について、1 秒あたり 1 回の強力な整合性のある読み込み、あるいは 1 秒あたり 2 回の結果整合性のある読み込み</li>
+</ul>
+</li>
+<li>WCU
+<ul>
+<li>1 WCU - 最大サイズが 1 KB の項目について、1 秒あたり 1 回の書き込み</li>
+<li>トランザクション書き込みリクエストでは2倍消費</li>
+</ul>
+</li>
 </ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                                                    <a rel="prev" href="hands_on.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                                    <a rel="prev" href="index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
+                                                    <a rel="next" href="design.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
                         
                         <div style="clear: both"></div>
                     </nav>
@@ -164,10 +241,13 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                                    <a rel="prev" href="hands_on.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                    <a rel="prev" href="index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
+                                    <a rel="next" href="design.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
                             </nav>
 
         </div>

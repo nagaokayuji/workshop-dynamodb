@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>参考 - DynamoDB ハンズオン</title>
+        <title>オペレーション - DynamoDB ハンズオン</title>
                 
 
         <!-- Custom HTML head -->
@@ -82,7 +82,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">AWS DynamoDb ハンズオン</a></li><li class="chapter-item expanded "><a href="prerequisite_knowledges.html"><strong aria-hidden="true">1.</strong> 抑えておくべき概念</a></li><li class="chapter-item expanded "><a href="design.html"><strong aria-hidden="true">2.</strong> テーブル設計における注意点</a></li><li class="chapter-item expanded "><a href="operations.html"><strong aria-hidden="true">3.</strong> オペレーション</a></li><li class="chapter-item expanded "><a href="hands_on.html"><strong aria-hidden="true">4.</strong> ハンズオン</a></li><li class="chapter-item expanded "><a href="references.html" class="active"><strong aria-hidden="true">5.</strong> 参考</a></li></ol>            </div>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">AWS DynamoDb ハンズオン</a></li><li class="chapter-item expanded "><a href="prerequisite_knowledges.html"><strong aria-hidden="true">1.</strong> 抑えておくべき概念</a></li><li class="chapter-item expanded "><a href="design.html"><strong aria-hidden="true">2.</strong> テーブル設計における注意点</a></li><li class="chapter-item expanded "><a href="operations.html" class="active"><strong aria-hidden="true">3.</strong> オペレーション</a></li><li class="chapter-item expanded "><a href="hands_on.html"><strong aria-hidden="true">4.</strong> ハンズオン</a></li><li class="chapter-item expanded "><a href="references.html"><strong aria-hidden="true">5.</strong> 参考</a></li></ol>            </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
@@ -144,19 +144,97 @@
                 <div id="content" class="content">
                     <main>
                         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
-<h1 id="参考"><a class="header" href="#参考">参考</a></h1>
+<h1 id="オペレーション"><a class="header" href="#オペレーション">オペレーション</a></h1>
+<h2 id="テーブル関連"><a class="header" href="#テーブル関連">テーブル関連</a></h2>
 <ul>
-<li><a href="https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/APIReference/API_Query.html">Query - Amazon DynamoDB</a></li>
+<li>CreateTable
+<ul>
+<li>新しいテーブルを作成</li>
+</ul>
+</li>
+<li>DescribeTable
+<ul>
+<li>テーブルに関する情報を取得</li>
+</ul>
+</li>
+<li>ListTables
+<ul>
+<li>リストのすべてのテーブルの名前を取得</li>
+</ul>
+</li>
+<li>UpdateTable
+<ul>
+<li>テーブルのインデックス設定を変更</li>
+</ul>
+</li>
+<li>DeleteTable
+<ul>
+<li>テーブルを削除</li>
+</ul>
+</li>
+</ul>
+<h2 id="データ取得"><a class="header" href="#データ取得">データ取得</a></h2>
+<ul>
+<li>GetItem
+<ul>
+<li>テーブルから単一の項目を取得</li>
+<li><strong>プライマリキーを指定</strong>する</li>
+</ul>
+</li>
+<li>Query
+<ul>
+<li><strong>パーティションキーを指定</strong>して項目を取得</li>
+<li>複数取得できる</li>
+</ul>
+</li>
+<li>Scan
+<ul>
+<li>指定テーブル/インデックスのすべての項目を取得</li>
+<li>遅い</li>
+<li>filter, limit 指定可能だが注意が必要</li>
+</ul>
+</li>
+</ul>
+<h2 id="データ作成"><a class="header" href="#データ作成">データ作成</a></h2>
+<ul>
+<li>PutItem
+<ul>
+<li>項目の属性を追加</li>
+<li><strong>プライマリキーを指定</strong>する</li>
+<li>プライマリキー以外の属性は<strong>任意</strong></li>
+</ul>
+</li>
+</ul>
+<h2 id="データ更新"><a class="header" href="#データ更新">データ更新</a></h2>
+<ul>
+<li>UpdateItem
+<ul>
+<li>項目の属性を更新</li>
+<li><strong>プライマリキーを指定</strong>する</li>
+</ul>
+</li>
+</ul>
+<h2 id="データ削除"><a class="header" href="#データ削除">データ削除</a></h2>
+<ul>
+<li>DeleteItem
+<ul>
+<li>単一の項目を削除</li>
+<li><strong>プライマリキーを指定</strong>する</li>
+</ul>
+</li>
 </ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                                                    <a rel="prev" href="hands_on.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                                    <a rel="prev" href="design.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
+                                                    <a rel="next" href="hands_on.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
                         
                         <div style="clear: both"></div>
                     </nav>
@@ -164,10 +242,13 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                                    <a rel="prev" href="hands_on.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                    <a rel="prev" href="design.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
+                                    <a rel="next" href="hands_on.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
                             </nav>
 
         </div>

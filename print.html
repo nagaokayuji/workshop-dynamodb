@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>workshop</title>
+        <title>DynamoDB ハンズオン</title>
                 <meta name="robots" content="noindex" />
                 
 
@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="dynamodb.html">AWS DynamoDb ハンズオン</a></li><li class="chapter-item expanded affix "><a href="references.html">参考</a></li></ol>            </div>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">AWS DynamoDb ハンズオン</a></li><li class="chapter-item expanded "><a href="prerequisite_knowledges.html"><strong aria-hidden="true">1.</strong> 抑えておくべき概念</a></li><li class="chapter-item expanded "><a href="design.html"><strong aria-hidden="true">2.</strong> テーブル設計における注意点</a></li><li class="chapter-item expanded "><a href="operations.html"><strong aria-hidden="true">3.</strong> オペレーション</a></li><li class="chapter-item expanded "><a href="hands_on.html"><strong aria-hidden="true">4.</strong> ハンズオン</a></li><li class="chapter-item expanded "><a href="references.html"><strong aria-hidden="true">5.</strong> 参考</a></li></ol>            </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
@@ -112,7 +112,7 @@
                         </button>
                                             </div>
 
-                    <h1 class="menu-title">workshop</h1>
+                    <h1 class="menu-title">DynamoDB ハンズオン</h1>
 
                     <div class="right-buttons">
                                                 <a href="print.html" title="Print this book" aria-label="Print this book">
@@ -145,7 +145,7 @@
                 <div id="content" class="content">
                     <main>
                         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
-<h1 id="dynamodbハンズオン"><a class="header" href="#dynamodbハンズオン">DynamoDBハンズオン</a></h1>
+<h1 id="aws-dynamodb-ハンズオン"><a class="header" href="#aws-dynamodb-ハンズオン">AWS DynamoDb ハンズオン</a></h1>
 <h2 id="dynamodbとは"><a class="header" href="#dynamodbとは">DynamoDBとは？</a></h2>
 <p>AWSマネージドのNoSQLデータベース。</p>
 <h3 id="nosql-not-only-sql"><a class="header" href="#nosql-not-only-sql">NoSQL (Not Only SQL)</a></h3>
@@ -182,8 +182,9 @@
 </li>
 </ul>
 <p><strong>DynamoDB は Document store / Key-Value store</strong> に該当します。</p>
-<h2 id="抑えておくべき概念"><a class="header" href="#抑えておくべき概念">抑えておくべき概念</a></h2>
-<h3 id="テーブル項目属性"><a class="header" href="#テーブル項目属性">テーブル・項目・属性</a></h3>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="抑えておくべき概念"><a class="header" href="#抑えておくべき概念">抑えておくべき概念</a></h1>
+<h2 id="テーブル項目属性"><a class="header" href="#テーブル項目属性">テーブル・項目・属性</a></h2>
 <ul>
 <li>テーブル(Tables)
 <ul>
@@ -204,7 +205,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="キー"><a class="header" href="#キー">キー</a></h3>
+<h2 id="キー"><a class="header" href="#キー">キー</a></h2>
 <ul>
 <li>パーティションキー
 <ul>
@@ -223,7 +224,7 @@
 </ul>
 <p><strong>パーティションキーとソートキーで一意</strong>になる必要があります。</p>
 <p>→ RDBのように3列以上での複合主キーは設定できません。</p>
-<h3 id="インデックスについて"><a class="header" href="#インデックスについて">インデックスについて</a></h3>
+<h2 id="インデックスについて"><a class="header" href="#インデックスについて">インデックスについて</a></h2>
 <p>非常に重要な概念です。</p>
 <p>Query, Scan オペレーションのために使用します。</p>
 <ul>
@@ -243,7 +244,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="キャパシティユニット"><a class="header" href="#キャパシティユニット">キャパシティユニット</a></h3>
+<h2 id="キャパシティユニット"><a class="header" href="#キャパシティユニット">キャパシティユニット</a></h2>
 <p>書き込み・読み込みリクエストに対して<strong>キャパシティユニット</strong>という概念があり、</p>
 <p>消費したキャパシティユニットに応じた料金が請求されます。</p>
 <p><a href="https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/developerguide/ProvisionedThroughput.html">DynamoDB のプロビジョンされた容量テーブルの設定の管理</a></p>
@@ -260,17 +261,20 @@
 </ul>
 </li>
 </ul>
-<h2 id="テーブル設計における注意点"><a class="header" href="#テーブル設計における注意点">テーブル設計における注意点</a></h2>
-<h3 id="正規化しすぎない"><a class="header" href="#正規化しすぎない">正規化しすぎない</a></h3>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="テーブル設計における注意点"><a class="header" href="#テーブル設計における注意点">テーブル設計における注意点</a></h1>
+<h1 id="テーブル設計における注意点-1"><a class="header" href="#テーブル設計における注意点-1">テーブル設計における注意点</a></h1>
+<h2 id="正規化しすぎない"><a class="header" href="#正規化しすぎない">正規化しすぎない</a></h2>
 <p>できるだけ少ないテーブル数を維持するのがベストプラクティスとして挙げられています。</p>
 <p><a href="https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/developerguide/best-practices.html">https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/developerguide/best-practices.html</a></p>
-<h3 id="結果整合性"><a class="header" href="#結果整合性">結果整合性</a></h3>
+<h2 id="結果整合性"><a class="header" href="#結果整合性">結果整合性</a></h2>
 <p>読み込み時に書き込み要求が反映されていない結果が返されることがあります。</p>
 <p>※だいたい1秒以内には反映されます。</p>
 <p><a href="https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/developerguide/HowItWorks.ReadConsistency.html">読み込み整合性</a></p>
 <p>デフォルトでは<strong>結果整合性のある読み込み</strong>が使用されますが、必要に応じて<strong>強力な整合性のある読み込み</strong>も使用できます。（ConsistentRead=true 指定）</p>
-<h2 id="オペレーション"><a class="header" href="#オペレーション">オペレーション</a></h2>
-<h3 id="テーブル関連"><a class="header" href="#テーブル関連">テーブル関連</a></h3>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="オペレーション"><a class="header" href="#オペレーション">オペレーション</a></h1>
+<h2 id="テーブル関連"><a class="header" href="#テーブル関連">テーブル関連</a></h2>
 <ul>
 <li>CreateTable
 <ul>
@@ -298,7 +302,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="データ取得"><a class="header" href="#データ取得">データ取得</a></h3>
+<h2 id="データ取得"><a class="header" href="#データ取得">データ取得</a></h2>
 <ul>
 <li>GetItem
 <ul>
@@ -320,7 +324,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="データ作成"><a class="header" href="#データ作成">データ作成</a></h3>
+<h2 id="データ作成"><a class="header" href="#データ作成">データ作成</a></h2>
 <ul>
 <li>PutItem
 <ul>
@@ -330,7 +334,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="データ更新"><a class="header" href="#データ更新">データ更新</a></h3>
+<h2 id="データ更新"><a class="header" href="#データ更新">データ更新</a></h2>
 <ul>
 <li>UpdateItem
 <ul>
@@ -339,7 +343,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="データ削除"><a class="header" href="#データ削除">データ削除</a></h3>
+<h2 id="データ削除"><a class="header" href="#データ削除">データ削除</a></h2>
 <ul>
 <li>DeleteItem
 <ul>
@@ -348,8 +352,8 @@
 </ul>
 </li>
 </ul>
-<hr />
-<h2 id="ハンズオン"><a class="header" href="#ハンズオン">ハンズオン</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="ハンズオン"><a class="header" href="#ハンズオン">ハンズオン</a></h1>
 <p>ローカル環境でDocker, JavaScript SDK を使用します。</p>
 <p><a href="https://github.com/nagaokayuji/workshop/tree/main/dynamodb">https://github.com/nagaokayuji/workshop</a></p>
 <ul>
@@ -375,7 +379,7 @@ services:
 <ul>
 <li><a href="http://localhost:8000/shell/">http://localhost:8000/shell/</a> にアクセス</li>
 </ul>
-<h3 id="テーブル一覧を取得listtables"><a class="header" href="#テーブル一覧を取得listtables">テーブル一覧を取得(ListTables)</a></h3>
+<h2 id="テーブル一覧を取得listtables"><a class="header" href="#テーブル一覧を取得listtables">テーブル一覧を取得(ListTables)</a></h2>
 <pre><code class="language-jsx">var params = {
 // 今回は指定なし
 };
@@ -387,7 +391,7 @@ dynamodb.listTables(params, function(err, data) {
 <p><code>athlete</code> というテーブルのみが存在すると思います。</p>
 <p>以下のサイトからダウンロードしたものから1000行を抽出したものです。</p>
 <p><a href="https://www.kaggle.com/mysarahmadbhat/120-years-of-olympic-history">120 Years of Olympic History</a></p>
-<h3 id="テーブルの詳細を取得describetable"><a class="header" href="#テーブルの詳細を取得describetable">テーブルの詳細を取得(DescribeTable)</a></h3>
+<h2 id="テーブルの詳細を取得describetable"><a class="header" href="#テーブルの詳細を取得describetable">テーブルの詳細を取得(DescribeTable)</a></h2>
 <p>このテーブルの詳細を見てみます。</p>
 <pre><code class="language-jsx">var params = {
     TableName: 'athlete',
@@ -400,7 +404,7 @@ dynamodb.describeTable(params, function(err, data) {
 <p><img src="https://res.cloudinary.com/ddaz9etkx/image/upload/v1628485639/ot/describe-table_fudpz9.png" alt="https://res.cloudinary.com/ddaz9etkx/image/upload/v1628485639/ot/describe-table_fudpz9.png" /></p>
 <p>※ DynamoDB の型について</p>
 <p><a href="https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/developerguide/DynamoDBMapper.DataTypes.html">サポートされているデータの種類</a></p>
-<h3 id="テーブルのデータを取得scan"><a class="header" href="#テーブルのデータを取得scan">テーブルのデータを取得(scan)</a></h3>
+<h2 id="テーブルのデータを取得scan"><a class="header" href="#テーブルのデータを取得scan">テーブルのデータを取得(scan)</a></h2>
 <p>3件取得してみます。</p>
 <pre><code class="language-jsx">var params = {
     TableName: 'athlete',
@@ -412,7 +416,7 @@ dynamodb.scan(params, function(err, data) {
     else ppJson(data); // successful response
 });
 </code></pre>
-<h3 id="テーブルのデータを取得query"><a class="header" href="#テーブルのデータを取得query">テーブルのデータを取得(Query)</a></h3>
+<h2 id="テーブルのデータを取得query"><a class="header" href="#テーブルのデータを取得query">テーブルのデータを取得(Query)</a></h2>
 <p><code>ID</code> が <code>5</code> のデータを取得します。</p>
 <pre><code class="language-jsx">var params = {
     TableName: 'athlete',
@@ -442,7 +446,7 @@ docClient.query(params, function(err, data) {
     else ppJson(data); // successful response
 });
 </code></pre>
-<h3 id="gsiを追加する"><a class="header" href="#gsiを追加する">GSIを追加する</a></h3>
+<h2 id="gsiを追加する"><a class="header" href="#gsiを追加する">GSIを追加する</a></h2>
 <p>UpdateTableオペレーションにより、</p>
 <p><code>Year</code> をパーティションキーとしたGSIを追加します。</p>
 <pre><code class="language-jsx">var params = {
@@ -486,7 +490,7 @@ dynamodb.updateTable(params, function (err, data) {
 </code></pre>
 <p><code>byYear</code> という名前でGSIを作成しました。</p>
 <p>（DescribeTable で確認してみましょう。）</p>
-<h3 id="gsiを使用してqueryを実行する"><a class="header" href="#gsiを使用してqueryを実行する">GSIを使用してQueryを実行する</a></h3>
+<h2 id="gsiを使用してqueryを実行する"><a class="header" href="#gsiを使用してqueryを実行する">GSIを使用してQueryを実行する</a></h2>
 <p>以下のように <code>IndexName</code> を指定し、特定の <code>Year</code> を持つ項目を取得できます。</p>
 <pre><code class="language-jsx">var params = {
   TableName: &quot;athlete&quot;,
@@ -509,7 +513,7 @@ docClient.query(params, function (err, data) {
 });
 </code></pre>
 <p>結果が5件返ってきていることを確認しておきましょう。</p>
-<h3 id="q-scan-で-filter-を使えばよいのでは"><a class="header" href="#q-scan-で-filter-を使えばよいのでは">[Q] Scan で filter を使えばよいのでは？</a></h3>
+<h2 id="q-scan-で-filter-を使えばよいのでは"><a class="header" href="#q-scan-で-filter-を使えばよいのでは">[Q] Scan で filter を使えばよいのでは？</a></h2>
 <p>以下のようなリクエストで試してみましょう。</p>
 <pre><code class="language-jsx">var params = {
   TableName: &quot;athlete&quot;,
@@ -534,7 +538,9 @@ dynamodb.scan(params, function (err, data) {
 <p>このため、結果が失われないようにするためには Limit を指定せずに Scan を実行する必要があり、この場合大量のキャパシティユニットを消費することになります。</p>
 <div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
 <h1 id="参考"><a class="header" href="#参考">参考</a></h1>
-<p>-https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/APIReference/API_Query.html</p>
+<ul>
+<li><a href="https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/APIReference/API_Query.html">Query - Amazon DynamoDB</a></li>
+</ul>
 
                     </main>
 

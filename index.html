@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>AWS DynamoDb ハンズオン - workshop</title>
+        <title>AWS DynamoDb ハンズオン - DynamoDB ハンズオン</title>
                 
 
         <!-- Custom HTML head -->
@@ -82,7 +82,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="dynamodb.html">AWS DynamoDb ハンズオン</a></li><li class="chapter-item expanded affix "><a href="references.html">参考</a></li></ol>            </div>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html" class="active">AWS DynamoDb ハンズオン</a></li><li class="chapter-item expanded "><a href="prerequisite_knowledges.html"><strong aria-hidden="true">1.</strong> 抑えておくべき概念</a></li><li class="chapter-item expanded "><a href="design.html"><strong aria-hidden="true">2.</strong> テーブル設計における注意点</a></li><li class="chapter-item expanded "><a href="operations.html"><strong aria-hidden="true">3.</strong> オペレーション</a></li><li class="chapter-item expanded "><a href="hands_on.html"><strong aria-hidden="true">4.</strong> ハンズオン</a></li><li class="chapter-item expanded "><a href="references.html"><strong aria-hidden="true">5.</strong> 参考</a></li></ol>            </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
@@ -111,7 +111,7 @@
                         </button>
                                             </div>
 
-                    <h1 class="menu-title">workshop</h1>
+                    <h1 class="menu-title">DynamoDB ハンズオン</h1>
 
                     <div class="right-buttons">
                                                 <a href="print.html" title="Print this book" aria-label="Print this book">
@@ -144,7 +144,7 @@
                 <div id="content" class="content">
                     <main>
                         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
-<h1 id="dynamodbハンズオン"><a class="header" href="#dynamodbハンズオン">DynamoDBハンズオン</a></h1>
+<h1 id="aws-dynamodb-ハンズオン"><a class="header" href="#aws-dynamodb-ハンズオン">AWS DynamoDb ハンズオン</a></h1>
 <h2 id="dynamodbとは"><a class="header" href="#dynamodbとは">DynamoDBとは？</a></h2>
 <p>AWSマネージドのNoSQLデータベース。</p>
 <h3 id="nosql-not-only-sql"><a class="header" href="#nosql-not-only-sql">NoSQL (Not Only SQL)</a></h3>
@@ -181,363 +181,13 @@
 </li>
 </ul>
 <p><strong>DynamoDB は Document store / Key-Value store</strong> に該当します。</p>
-<h2 id="抑えておくべき概念"><a class="header" href="#抑えておくべき概念">抑えておくべき概念</a></h2>
-<h3 id="テーブル項目属性"><a class="header" href="#テーブル項目属性">テーブル・項目・属性</a></h3>
-<ul>
-<li>テーブル(Tables)
-<ul>
-<li>データのコレクション</li>
-<li>RDBのテーブルと同様</li>
-</ul>
-</li>
-<li>項目(Items)
-<ul>
-<li>一意に識別可能な属性のグループ</li>
-<li>RDBの行・レコードに対応</li>
-</ul>
-</li>
-<li>属性(Attributes)
-<ul>
-<li>データ要素</li>
-<li>RDBの列・フィールドに対応</li>
-</ul>
-</li>
-</ul>
-<h3 id="キー"><a class="header" href="#キー">キー</a></h3>
-<ul>
-<li>パーティションキー
-<ul>
-<li>必ず必要</li>
-<li>ハッシュ関数への入力として使用される</li>
-<li>物理的に<strong>項目が保存されるパーティション</strong>が決まる</li>
-</ul>
-</li>
-<li>ソートキー
-<ul>
-<li>指定しなくても良い</li>
-<li>パーティションキーと合わせて複合主キーとなる必要がある</li>
-<li>同じパーティションキーの項目はソートキーでソートされて保存される</li>
-</ul>
-</li>
-</ul>
-<p><strong>パーティションキーとソートキーで一意</strong>になる必要があります。</p>
-<p>→ RDBのように3列以上での複合主キーは設定できません。</p>
-<h3 id="インデックスについて"><a class="header" href="#インデックスについて">インデックスについて</a></h3>
-<p>非常に重要な概念です。</p>
-<p>Query, Scan オペレーションのために使用します。</p>
-<ul>
-<li>GSI(グローバルセカンダリインデックス)
-<ul>
-<li>インデックスのプライマリキーを任意に指定可能</li>
-<li>一意にならなくてもよい</li>
-<li><strong>キャパシティユニットを消費</strong>する</li>
-<li>テーブル作成後に追加可能</li>
-</ul>
-</li>
-<li>LSI(ローカルセカンダリインデックス)
-<ul>
-<li>テーブルのパーティションキーを使用</li>
-<li>ソートキーは任意に指定可能</li>
-<li><strong>テーブル作成時</strong>に指定する（テーブル作成後はLSIを追加できない）</li>
-</ul>
-</li>
-</ul>
-<h3 id="キャパシティユニット"><a class="header" href="#キャパシティユニット">キャパシティユニット</a></h3>
-<p>書き込み・読み込みリクエストに対して<strong>キャパシティユニット</strong>という概念があり、</p>
-<p>消費したキャパシティユニットに応じた料金が請求されます。</p>
-<p><a href="https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/developerguide/ProvisionedThroughput.html">DynamoDB のプロビジョンされた容量テーブルの設定の管理</a></p>
-<ul>
-<li>RCU
-<ul>
-<li>1 RCU - 最大サイズ 4 KB の項目について、1 秒あたり 1 回の強力な整合性のある読み込み、あるいは 1 秒あたり 2 回の結果整合性のある読み込み</li>
-</ul>
-</li>
-<li>WCU
-<ul>
-<li>1 WCU - 最大サイズが 1 KB の項目について、1 秒あたり 1 回の書き込み</li>
-<li>トランザクション書き込みリクエストでは2倍消費</li>
-</ul>
-</li>
-</ul>
-<h2 id="テーブル設計における注意点"><a class="header" href="#テーブル設計における注意点">テーブル設計における注意点</a></h2>
-<h3 id="正規化しすぎない"><a class="header" href="#正規化しすぎない">正規化しすぎない</a></h3>
-<p>できるだけ少ないテーブル数を維持するのがベストプラクティスとして挙げられています。</p>
-<p><a href="https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/developerguide/best-practices.html">https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/developerguide/best-practices.html</a></p>
-<h3 id="結果整合性"><a class="header" href="#結果整合性">結果整合性</a></h3>
-<p>読み込み時に書き込み要求が反映されていない結果が返されることがあります。</p>
-<p>※だいたい1秒以内には反映されます。</p>
-<p><a href="https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/developerguide/HowItWorks.ReadConsistency.html">読み込み整合性</a></p>
-<p>デフォルトでは<strong>結果整合性のある読み込み</strong>が使用されますが、必要に応じて<strong>強力な整合性のある読み込み</strong>も使用できます。（ConsistentRead=true 指定）</p>
-<h2 id="オペレーション"><a class="header" href="#オペレーション">オペレーション</a></h2>
-<h3 id="テーブル関連"><a class="header" href="#テーブル関連">テーブル関連</a></h3>
-<ul>
-<li>CreateTable
-<ul>
-<li>新しいテーブルを作成</li>
-</ul>
-</li>
-<li>DescribeTable
-<ul>
-<li>テーブルに関する情報を取得</li>
-</ul>
-</li>
-<li>ListTables
-<ul>
-<li>リストのすべてのテーブルの名前を取得</li>
-</ul>
-</li>
-<li>UpdateTable
-<ul>
-<li>テーブルのインデックス設定を変更</li>
-</ul>
-</li>
-<li>DeleteTable
-<ul>
-<li>テーブルを削除</li>
-</ul>
-</li>
-</ul>
-<h3 id="データ取得"><a class="header" href="#データ取得">データ取得</a></h3>
-<ul>
-<li>GetItem
-<ul>
-<li>テーブルから単一の項目を取得</li>
-<li><strong>プライマリキーを指定</strong>する</li>
-</ul>
-</li>
-<li>Query
-<ul>
-<li><strong>パーティションキーを指定</strong>して項目を取得</li>
-<li>複数取得できる</li>
-</ul>
-</li>
-<li>Scan
-<ul>
-<li>指定テーブル/インデックスのすべての項目を取得</li>
-<li>遅い</li>
-<li>filter, limit 指定可能だが注意が必要</li>
-</ul>
-</li>
-</ul>
-<h3 id="データ作成"><a class="header" href="#データ作成">データ作成</a></h3>
-<ul>
-<li>PutItem
-<ul>
-<li>項目の属性を追加</li>
-<li><strong>プライマリキーを指定</strong>する</li>
-<li>プライマリキー以外の属性は<strong>任意</strong></li>
-</ul>
-</li>
-</ul>
-<h3 id="データ更新"><a class="header" href="#データ更新">データ更新</a></h3>
-<ul>
-<li>UpdateItem
-<ul>
-<li>項目の属性を更新</li>
-<li><strong>プライマリキーを指定</strong>する</li>
-</ul>
-</li>
-</ul>
-<h3 id="データ削除"><a class="header" href="#データ削除">データ削除</a></h3>
-<ul>
-<li>DeleteItem
-<ul>
-<li>単一の項目を削除</li>
-<li><strong>プライマリキーを指定</strong>する</li>
-</ul>
-</li>
-</ul>
-<hr />
-<h2 id="ハンズオン"><a class="header" href="#ハンズオン">ハンズオン</a></h2>
-<p>ローカル環境でDocker, JavaScript SDK を使用します。</p>
-<p><a href="https://github.com/nagaokayuji/workshop/tree/main/dynamodb">https://github.com/nagaokayuji/workshop</a></p>
-<ul>
-<li>docker-compose.yml</li>
-</ul>
-<pre><code class="language-yaml">version: &quot;3.8&quot;
-services:
-  dynamodb-local:
-    image: amazon/dynamodb-local:1.16.0
-    container_name: dynamodb-local
-    ports:
-      - &quot;8000:8000&quot;
-    volumes:
-      - &quot;./docker/dynamodb:/home/dynamodblocal/data&quot;
-    working_dir: /home/dynamodblocal
-    command: &quot;-jar DynamoDBLocal.jar -sharedDb -optimizeDbBeforeStartup -dbPath ./data&quot;
-</code></pre>
-<ul>
-<li>起動</li>
-</ul>
-<pre><code class="language-bash">docker-compose up
-</code></pre>
-<ul>
-<li><a href="http://localhost:8000/shell/">http://localhost:8000/shell/</a> にアクセス</li>
-</ul>
-<h3 id="テーブル一覧を取得listtables"><a class="header" href="#テーブル一覧を取得listtables">テーブル一覧を取得(ListTables)</a></h3>
-<pre><code class="language-jsx">var params = {
-// 今回は指定なし
-};
-dynamodb.listTables(params, function(err, data) {
-    if (err) ppJson(err); // an error occurred
-    else ppJson(data); // successful response
-});
-</code></pre>
-<p><code>athlete</code> というテーブルのみが存在すると思います。</p>
-<p>以下のサイトからダウンロードしたものから1000行を抽出したものです。</p>
-<p><a href="https://www.kaggle.com/mysarahmadbhat/120-years-of-olympic-history">120 Years of Olympic History</a></p>
-<h3 id="テーブルの詳細を取得describetable"><a class="header" href="#テーブルの詳細を取得describetable">テーブルの詳細を取得(DescribeTable)</a></h3>
-<p>このテーブルの詳細を見てみます。</p>
-<pre><code class="language-jsx">var params = {
-    TableName: 'athlete',
-};
-dynamodb.describeTable(params, function(err, data) {
-    if (err) ppJson(err); // an error occurred
-    else ppJson(data); // successful response
-});
-</code></pre>
-<p><img src="https://res.cloudinary.com/ddaz9etkx/image/upload/v1628485639/ot/describe-table_fudpz9.png" alt="https://res.cloudinary.com/ddaz9etkx/image/upload/v1628485639/ot/describe-table_fudpz9.png" /></p>
-<p>※ DynamoDB の型について</p>
-<p><a href="https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/developerguide/DynamoDBMapper.DataTypes.html">サポートされているデータの種類</a></p>
-<h3 id="テーブルのデータを取得scan"><a class="header" href="#テーブルのデータを取得scan">テーブルのデータを取得(scan)</a></h3>
-<p>3件取得してみます。</p>
-<pre><code class="language-jsx">var params = {
-    TableName: 'athlete',
-    Limit: 3, // 3件取得
-    ReturnConsumedCapacity: 'TOTAL', // 消費したキャパシティユニットも返す
-};
-dynamodb.scan(params, function(err, data) {
-    if (err) ppJson(err); // an error occurred
-    else ppJson(data); // successful response
-});
-</code></pre>
-<h3 id="テーブルのデータを取得query"><a class="header" href="#テーブルのデータを取得query">テーブルのデータを取得(Query)</a></h3>
-<p><code>ID</code> が <code>5</code> のデータを取得します。</p>
-<pre><code class="language-jsx">var params = {
-    TableName: 'athlete',
-    KeyConditionExpression: 'ID = :val', // :val のようなプレースホルダが必要
-    ExpressionAttributeValues: { 
-        &quot;:val&quot;: 5, // :val の値
-    }, 
-    ScanIndexForward: true, // ソートキーの昇順
-};
-docClient.query(params, function(err, data) {
-    if (err) ppJson(err); // an error occurred
-    else ppJson(data); // successful response
-});
-</code></pre>
-<p>この <code>ID</code> がパーティションキーであることに注意してください。</p>
-<p>例えば、以下のようにパーティションキーを指定しないクエリはエラーとなります。</p>
-<pre><code class="language-jsx">var params = {
-    TableName: 'athlete',
-    KeyConditionExpression: 'Year = :val',
-    ExpressionAttributeValues: { 
-        &quot;:Year&quot;: 1994, 
-    }, 
-    ScanIndexForward: true, 
-};
-docClient.query(params, function(err, data) {
-    if (err) ppJson(err); // an error occurred
-    else ppJson(data); // successful response
-});
-</code></pre>
-<h3 id="gsiを追加する"><a class="header" href="#gsiを追加する">GSIを追加する</a></h3>
-<p>UpdateTableオペレーションにより、</p>
-<p><code>Year</code> をパーティションキーとしたGSIを追加します。</p>
-<pre><code class="language-jsx">var params = {
-  TableName: &quot;athlete&quot;,
-  AttributeDefinitions: [
-    { AttributeName: &quot;Year&quot;, AttributeType: &quot;N&quot; },
-    { AttributeName: &quot;ID&quot;, AttributeType: &quot;N&quot; },
-  ],
-  GlobalSecondaryIndexUpdates: [
-    {
-      // GSIを更新
-      Create: {
-        // 追加
-        IndexName: &quot;byYear&quot;, // 名前をつける
-        KeySchema: [
-          {
-            AttributeName: &quot;Year&quot;, // Year をパーティションキーに設定
-            KeyType: &quot;HASH&quot;,
-          },
-          {
-            AttributeName: &quot;ID&quot;, // ID をソートキーに設定
-            KeyType: &quot;RANGE&quot;,
-          },
-        ],
-        Projection: {
-          ProjectionType: &quot;ALL&quot;, // すべての属性に対して適用
-        },
-        ProvisionedThroughput: {
-          ReadCapacityUnits: 1,
-          WriteCapacityUnits: 1,
-        },
-      },
-    },
-  ],
-};
-dynamodb.updateTable(params, function (err, data) {
-  if (err) ppJson(err);
-  // an error occurred
-  else ppJson(data); // successful response
-});
-</code></pre>
-<p><code>byYear</code> という名前でGSIを作成しました。</p>
-<p>（DescribeTable で確認してみましょう。）</p>
-<h3 id="gsiを使用してqueryを実行する"><a class="header" href="#gsiを使用してqueryを実行する">GSIを使用してQueryを実行する</a></h3>
-<p>以下のように <code>IndexName</code> を指定し、特定の <code>Year</code> を持つ項目を取得できます。</p>
-<pre><code class="language-jsx">var params = {
-  TableName: &quot;athlete&quot;,
-  IndexName: &quot;byYear&quot;, // 先ほど追加した GSI
-  KeyConditionExpression: &quot;#y = :year&quot;, // Year は予約後のため、 #y に置き換える
-  ExpressionAttributeNames: {
-    &quot;#y&quot;: &quot;Year&quot;, // #y を Year にマッピング
-  },
-  ExpressionAttributeValues: {
-    &quot;:year&quot;: 1994,
-  },
-  Limit: 5, // 5件
-  ScanIndexForward: true, // ID の昇順に取得
-  ReturnConsumedCapacity: &quot;INDEXES&quot;, // セカンダリインデックスの小計も取得
-};
-docClient.query(params, function (err, data) {
-  if (err) ppJson(err);
-  // an error occurred
-  else ppJson(data); // successful response
-});
-</code></pre>
-<p>結果が5件返ってきていることを確認しておきましょう。</p>
-<h3 id="q-scan-で-filter-を使えばよいのでは"><a class="header" href="#q-scan-で-filter-を使えばよいのでは">[Q] Scan で filter を使えばよいのでは？</a></h3>
-<p>以下のようなリクエストで試してみましょう。</p>
-<pre><code class="language-jsx">var params = {
-  TableName: &quot;athlete&quot;,
-  Limit: 5, // 5 件取得したい
-  FilterExpression: &quot;#y = :year&quot;,
-  ExpressionAttributeNames: {
-    &quot;#y&quot;: &quot;Year&quot;,
-  },
-  ExpressionAttributeValues: {
-    &quot;:year&quot;: { N: &quot;1994&quot; },
-  },
-  ReturnConsumedCapacity: &quot;INDEXES&quot;,
-};
-dynamodb.scan(params, function (err, data) {
-  if (err) ppJson(err);
-  // an error occurred
-  else ppJson(data); // successful response
-});
-</code></pre>
-<p>思った件数の結果が得られません。</p>
-<p>実は、<strong>FilterExpression はクエリの結果を取得してから</strong>絞り込みを行うため、今回のケースだと<strong>5件分Scanしてから</strong>条件に合致した項目のみを返しています。</p>
-<p>このため、結果が失われないようにするためには Limit を指定せずに Scan を実行する必要があり、この場合大量のキャパシティユニットを消費することになります。</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                                                    <a rel="next" href="references.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                                    <a rel="next" href="prerequisite_knowledges.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -548,7 +198,7 @@ dynamodb.scan(params, function (err, data) {
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                                    <a rel="next" href="references.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                    <a rel="next" href="prerequisite_knowledges.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                             </nav>
