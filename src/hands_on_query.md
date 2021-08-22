@@ -169,7 +169,7 @@ docClient.query(params, function(err, data) {
 ```
 
 ## Query のオプション
-いくつかご紹介します。
+いくつか紹介します。
 
 - KeyConditionExpression
   - Query 特有のオプションです。
@@ -180,12 +180,15 @@ docClient.query(params, function(err, data) {
     - `=` 以外の演算子も使用できます。
       - `<`, `>`, `<=`, `>=`, `BETWEEN`, `begins_with`
 - ExpressionAttributeNames
-  - 置換に使用する名前(Attribute)を指定します。
-  - 
+  - expressionで使用される属性名に名前を設定します。
+  - 名前には`#`で始まる文字を指定します。
+  - ユースケースには以下があります。
+    - DynamoDB の予約語と競合する場合
+    - 繰り返し使用される値にプレースホルダを設定したい場合
+    - 属性名の特殊文字のエスケープ
 - ExpressionAttributeValues
-  - 指定したexpressionのプレースホルダに値を設定します。
-  - `:`を使用して
-  - 
+  - expression で使用される値に名前を設定します。
+  - 名前には`:`で始まる文字を指定します。
 - ScanIndexForward
   - ソートキーの順序を指定できます。
   - true

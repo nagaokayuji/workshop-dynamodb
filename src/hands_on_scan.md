@@ -101,7 +101,7 @@ dynamodb.scan(params, function(err, data) {
   - すべての要素がScanされた場合は空になります。
 
 ## Scanのオプション
-いくつかご紹介します。
+いくつか紹介します。
 
 - FilterExpression
   - 結果を絞り込むことができます。
