@@ -145,19 +145,21 @@
                     <main>
                         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
 <h1 id="キャパシティユニット"><a class="header" href="#キャパシティユニット">キャパシティユニット</a></h1>
-<p>書き込み・読み込みリクエストに対して<strong>キャパシティユニット</strong>という概念があり、</p>
+<p>DynamoDB には<strong>キャパシティユニット</strong>という概念があり、
+読み込み・書き込みリクエストに対してそれぞれ RCU(Read Capacity Unit), WCU(Write Capacity Unit) という容量が消費されていきます。</p>
 <p>消費したキャパシティユニットに応じた料金が請求されます。</p>
 <p><a href="https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/developerguide/ProvisionedThroughput.html">DynamoDB のプロビジョンされた容量テーブルの設定の管理</a></p>
 <ul>
-<li>RCU
+<li>1 RCU
 <ul>
-<li>1 RCU - 最大サイズ 4 KB の項目について、1 秒あたり 1 回の強力な整合性のある読み込み、あるいは 1 秒あたり 2 回の結果整合性のある読み込み</li>
+<li>最大サイズ <strong>4 KB</strong> の項目について、 1 秒あたり 2 回の結果整合性のある読み込み</li>
+<li>強力な整合性のある読み込みでは 2 倍消費</li>
 </ul>
 </li>
-<li>WCU
+<li>1 WCU
 <ul>
-<li>1 WCU - 最大サイズが 1 KB の項目について、1 秒あたり 1 回の書き込み</li>
-<li>トランザクション書き込みリクエストでは2倍消費</li>
+<li>最大サイズが <strong>1 KB</strong> の項目について、1 秒あたり 1 回の書き込み</li>
+<li>トランザクション書き込みリクエストでは 2 倍消費</li>
 </ul>
 </li>
 </ul>
