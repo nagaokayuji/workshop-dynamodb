@@ -90,7 +90,7 @@ dynamodb.scan(params, function(err, data) {
 
 ### 結果の見方
 - Items
-  - ここに取得したデータが入っています。
+  - ここに取得した項目（データ）が入っています。
 - Count
   - 結果の件数です。
 - ScannedCount
