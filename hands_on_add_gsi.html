@@ -190,7 +190,6 @@ dynamodb.updateTable(params, function (err, data) {
 <h2 id="実行結果"><a class="header" href="#実行結果">実行結果</a></h2>
 <p><code>byYear</code> という名前でGSIを作成しました。</p>
 <p>実行すると以下のようなレスポンスが得られます。</p>
-<p>なお、下記のレスポンスは DescribeTable を実行すると同様の結果となります。</p>
 <pre><code class="language-json">{
   &quot;TableDescription&quot;: {
     &quot;AttributeDefinitions&quot;: [
@@ -235,6 +234,7 @@ dynamodb.updateTable(params, function (err, data) {
   }
 }
 </code></pre>
+<p>なお、上記のレスポンスは DescribeTable を実行したときと同様の結果となっています。</p>
 
                     </main>
 

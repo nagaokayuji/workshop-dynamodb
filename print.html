@@ -624,7 +624,7 @@ dynamodb.scan(params, function(err, data) {
 <ul>
 <li>Items
 <ul>
-<li>ここに取得したデータが入っています。</li>
+<li>ここに取得した項目（データ）が入っています。</li>
 </ul>
 </li>
 <li>Count
@@ -951,7 +951,6 @@ dynamodb.updateTable(params, function (err, data) {
 <h2 id="実行結果-4"><a class="header" href="#実行結果-4">実行結果</a></h2>
 <p><code>byYear</code> という名前でGSIを作成しました。</p>
 <p>実行すると以下のようなレスポンスが得られます。</p>
-<p>なお、下記のレスポンスは DescribeTable を実行すると同様の結果となります。</p>
 <pre><code class="language-json">{
   &quot;TableDescription&quot;: {
     &quot;AttributeDefinitions&quot;: [
@@ -996,6 +995,7 @@ dynamodb.updateTable(params, function (err, data) {
   }
 }
 </code></pre>
+<p>なお、上記のレスポンスは DescribeTable を実行したときと同様の結果となっています。</p>
 <div style="break-before: page; page-break-before: always;"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
 <h1 id="gsiを使用してqueryを実行する"><a class="header" href="#gsiを使用してqueryを実行する">GSIを使用してQueryを実行する</a></h1>
 <p>追加したGSIを使用してQueryを発行してみましょう。</p>
