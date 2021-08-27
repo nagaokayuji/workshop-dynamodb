@@ -1,8 +1,9 @@
 # AWS DynamoDB ハンズオン
 
-## DynamoDBとは？
+## <img src="https://res.cloudinary.com/ddaz9etkx/image/upload/v1630071926/202108/Untitled_pm3wuz.png" width="40px"> DynamoDBとは？
 
-AWSマネージドのNoSQLデータベースです。
+
+AWSマネージドの **NoSQL** データベースです。
 
 ### NoSQL (Not Only SQL)
 
