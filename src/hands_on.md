@@ -1,6 +1,6 @@
 # ハンズオン
 
-ローカル環境でDocker, JavaScript SDK を使用して DynamoDB を触ってみましょう。
+ここからはローカル環境でDocker, JavaScript SDK を使用して DynamoDB を触っていきます。
 
 ## 起動方法
 
