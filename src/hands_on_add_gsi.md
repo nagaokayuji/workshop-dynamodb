@@ -52,8 +52,6 @@ dynamodb.updateTable(params, function (err, data) {
 
 実行すると以下のようなレスポンスが得られます。
 
-なお、下記のレスポンスは DescribeTable を実行すると同様の結果となります。
-
 ```json
 {
   "TableDescription": {
@@ -99,3 +97,5 @@ dynamodb.updateTable(params, function (err, data) {
   }
 }
 ```
+
+なお、上記のレスポンスは DescribeTable を実行したときと同様の結果となっています。
