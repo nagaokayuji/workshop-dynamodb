@@ -341,7 +341,8 @@ RDBにおけるテーブルやカラムなどはDynamoDBでも共通の概念で
 </li>
 <li>BatchGetItem
 <ul>
-<li>GetItem を複数回実行</li>
+<li>1度の呼び出しで GetItem を複数回リクエストできる</li>
+<li>最大100項目まで取得可能</li>
 </ul>
 </li>
 <li>Query
@@ -390,7 +391,9 @@ RDBにおけるテーブルやカラムなどはDynamoDBでも共通の概念で
 <ul>
 <li>BatchWriteItem
 <ul>
-<li>データ追加や削除を複数回できる</li>
+<li>1度の呼び出しで複数の書き込み・削除ができる</li>
+<li>大量データの扱いに便利</li>
+<li>最大25リクエストまで</li>
 </ul>
 </li>
 </ul>
