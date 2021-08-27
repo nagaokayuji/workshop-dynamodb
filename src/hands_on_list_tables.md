@@ -15,7 +15,7 @@ dynamodb.listTables(params, function(err, data) {
 ```
 
 ## 実行結果
-実行してみると、
+実行してみると
 
 次のようなレスポンスが返ってきます。
 
@@ -23,7 +23,7 @@ dynamodb.listTables(params, function(err, data) {
 {"TableNames":["athlete"]}
 ```
 
-`athlete` というテーブルが存在することがわかりました。
+`athlete` というテーブルが存在することがわかります。
 
 
 このテーブルには以下のサイトからダウンロードしたCSV(`athlete_events.csv`)から1000行を抽出したデータが格納されています。
@@ -31,6 +31,7 @@ dynamodb.listTables(params, function(err, data) {
 [120 Years of Olympic History](https://www.kaggle.com/mysarahmadbhat/120-years-of-olympic-history)
 
 
+ファイルの説明は以下です。
 ```
 About this file
 ID Unique number for each athlete
